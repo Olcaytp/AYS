@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown my-2 my-lg-0">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item bg-dark" href="#">Action</a>
+                    <a class="dropdown-item bg-dark" href="#">Another action</a>
+                    <div class="dropdown-divider bg-dark"></div>
+                    <a class="dropdown-item bg-dark" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-container">
+<div class="side-bar" >
+		<ul class="nav flex-column">
+	  	<li class="nav-item">
+	    	<a class="nav-link active" routerLink="">
+				<mat-icon>add_to_home_screen</mat-icon>
+				</a>
+	  	</li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="new-user">
+                <mat-icon>person_add</mat-icon>
+                </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="payments">
+                <mat-icon> attach_money</mat-icon>
+                </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="../user-list">
+                <mat-icon>list</mat-icon>
+                </a>
+          </li>
+		</ul>
+	</div>
+
+	<div class="content-container">
+        Admin Dashboard
+
+<br>
+<!-- <br>
+<button mat-raised-button color="primary" routerLink="/home">
+    <mat-icon>home</mat-icon>
+    <span>Home</span>
+</button> -->
+
+<br>
+<br>
+
+<div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin">
+    hello admin!
+    <br>
+    this is a simple test for admin status. a more rigorous test is to edit the auth.guard.ts file :)
+</div>
+
+<ng-template #notAdmin>
+    Not admin
+</ng-template>
+	</div>
+</div>
+

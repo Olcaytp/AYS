@@ -1,0 +1,93 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse">
+        <!-- Left links -->
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <button mat-button routerLink="/home">
+                <mat-icon>home</mat-icon>
+                Home
+            </button>
+          </li>
+          <li class="nav-item">
+            <button mat-button routerLink="/payments">
+                <mat-icon> attach_money</mat-icon>
+                Payments
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="justify-content-end" mat-button >
+                <mat-icon>logout</mat-icon>
+                Logout
+            </button>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="payments">Payments</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown my-2 my-lg-0">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item bg-dark" href="#">Action</a>
+                    <a class="dropdown-item bg-dark" href="#">Another action</a>
+                    <div class="dropdown-divider bg-dark"></div>
+                    <a class="dropdown-item bg-dark" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav> -->
+
+<div class="row d-flex justify-content-start ml-5">
+    <div class="col-4 mt-1">
+        <div class="list-group mt-2" id="list-tab" role="tablist">
+            <div class="content-container">
+                
+                <button mat-raised-button color="primary">
+                    <mat-icon>home</mat-icon>
+                    <span>Dashboard</span>
+                </button>
+
+                <br>
+                <mat-card *ngIf="(user | async)">
+                    <mat-card-header>
+                      <mat-card-title>Account Type: {{ (user | async)?.accountType }}</mat-card-title>
+                      <mat-card-title>Display Name: {{ (user | async)?.displayName }}</mat-card-title>
+                      <mat-card-title>Email: {{ (user | async)?.email }}</mat-card-title>
+                    </mat-card-header>
+                  </mat-card>
+                  <br>
+
+                <mat-list *ngIf="(user | async)">
+                    <mat-list-item>Account Type: {{ (user | async)?.accountType }}</mat-list-item>
+                    <mat-list-item>Display Name: {{ (user | async)?.displayName }}</mat-list-item>
+                    <!-- <mat-list-item>Display Name (lower): {{ (user | async)?.displayName_lower }}</mat-list-item> -->
+                    <mat-list-item>Email: {{ (user | async)?.email }}</mat-list-item>
+                    <!-- <mat-list-item>Email (lower): {{ (user | async)?.email_lower }}</mat-list-item> -->
+                    <!-- <mat-list-item>Email Verification Status: {{ (afAuth.user | async)?.emailVerified }}</mat-list-item> -->
+                </mat-list>
+            </div>
+        </div>
+    </div>
+</div>
