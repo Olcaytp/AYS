@@ -41,7 +41,6 @@
     font-size: 20px;
   }
   .page-container {
-    display: grid;
     grid-template-columns: 60px auto;
     height: 100%;
     padding: 0px;
@@ -59,4 +58,14 @@
 
   .content-container {
     margin-top: 30px;
+  }
+
+  table {
+    width: 80%;
+    margin: auto;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
   }

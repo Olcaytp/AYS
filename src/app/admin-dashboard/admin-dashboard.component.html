@@ -1,84 +1,108 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown my-2 my-lg-0">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item bg-dark" href="#">Action</a>
-                    <a class="dropdown-item bg-dark" href="#">Another action</a>
-                    <div class="dropdown-divider bg-dark"></div>
-                    <a class="dropdown-item bg-dark" href="#">Something else here</a>
+<nav  class="navbar navbar-expand-lg navbar-light d-flex justify-content-between" style="background: #3f51b5; color: white;">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <button mat-button routerLink="/dashboard">
+                                <mat-icon>dashboard</mat-icon>
+                                Dashboard
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button mat-button routerLink="/payments">
+                                <mat-icon> attach_money</mat-icon>
+                                Payments
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button mat-button [matMenuTriggerFor]="menu">Users</button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>
+                                    <a class="nav-link" routerLink="/new-user" style="color: black;">
+                                        <mat-icon>person_add</mat-icon>
+                                        Add User
+                                    </a>
+                                </button>
+                                <button mat-menu-item>
+                                    <a class="nav-link" routerLink="../user-list" style="color: black;">
+                                        <mat-icon>list</mat-icon>
+                                        User List
+                                    </a>
+                                </button>
+                            </mat-menu>
+                        </li>
+                    </ul>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div>
+        <button mat-button class="justify-content-end" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Logout
+        </button>
     </div>
 </nav>
 
-<div class="page-container">
-<div class="side-bar" >
-		<ul class="nav flex-column">
-	  	<li class="nav-item">
-	    	<a class="nav-link active" routerLink="">
-				<mat-icon>add_to_home_screen</mat-icon>
-				</a>
-	  	</li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="new-user">
-                <mat-icon>person_add</mat-icon>
-                </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="payments">
-                <mat-icon> attach_money</mat-icon>
-                </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="../user-list">
-                <mat-icon>list</mat-icon>
-                </a>
-          </li>
-		</ul>
-	</div>
 
-	<div class="content-container">
+<div class="row d-flex justify-content-start ml-5">
+    <div class="col-4 mt-1">
+        <div class="list-group mt-2" id="list-tab" role="tablist">
+            <div class="content-container">
+                
+                <button mat-raised-button color="primary">
+                    <mat-icon>home</mat-icon>
+                    <span>Admin Dashboard Page</span>
+                </button>
+                <br>
+                <div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin">
+                    hello admin!
+                    <br>
+                    this is a simple test for admin status. a more rigorous test is to edit the auth.guard.ts file :)
+
+                    <mat-card *ngIf="(user | async)" class="mt-2">
+                        <mat-card-header>
+                          <mat-card-title>Account Type: {{ (user | async)?.accountType }}</mat-card-title>
+                          <mat-card-title>Display Name: {{ (user | async)?.displayName }}</mat-card-title>
+                          <mat-card-title>Email: {{ (user | async)?.email }}</mat-card-title>
+                        </mat-card-header>
+                      </mat-card>
+                </div>
+                <ng-template #notAdmin>
+                    Not admin
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ <!-- <div class="page-container">
+
+    <div class="content-container">
         Admin Dashboard
 
-<br>
-<!-- <br>
+        <br>
+        <br>
 <button mat-raised-button color="primary" routerLink="/home">
     <mat-icon>home</mat-icon>
     <span>Home</span>
-</button> -->
+</button> 
 
-<br>
-<br>
+        <br>
+        <br>
 
-<div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin">
-    hello admin!
-    <br>
-    this is a simple test for admin status. a more rigorous test is to edit the auth.guard.ts file :)
-</div>
+        <div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin">
+            hello admin!
+            <br>
+            this is a simple test for admin status. a more rigorous test is to edit the auth.guard.ts file :)
+        </div>
 
-<ng-template #notAdmin>
-    Not admin
-</ng-template>
-	</div>
-</div>
-
+        <ng-template #notAdmin>
+            Not admin
+        </ng-template>
+    </div>
+</div>  -->

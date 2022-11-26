@@ -1,18 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between"
+  style="background: #3f51b5; color: white;">
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <button mat-button routerLink="/admin">
+                <mat-icon>admin_panel_settings</mat-icon>
+                Admin Dashboard
+              </button>
+            </li>
+            <li class="nav-item">
+              <button mat-button routerLink="/dashboard">
+                <mat-icon>dashboard</mat-icon>
+                Dashboard
+              </button>
+            </li>
+            <li class="nav-item">
+              <button mat-button routerLink="/payments">
+                <mat-icon> attach_money</mat-icon>
+                Payments
+              </button>
+            </li>
+            <li class="nav-item">
+              <button mat-button [matMenuTriggerFor]="menu">Users</button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <a class="nav-link" routerLink="/new-user" style="color: black;">
+                    <mat-icon>person_add</mat-icon>
+                    Add User
+                  </a>
+                </button>
+              </mat-menu>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div>
+    <button mat-button class="justify-content-end" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </div>
+</nav>
+
 <div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin">
   hello admin!
   <br>
   this is a simple test for admin status. a more rigorous test is to edit the auth.guard.ts file :)
+
+
   <div class="page-container">
-    <div class="side-bar">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" routerLink="../admin">
-            <mat-icon>add_to_home_screen</mat-icon>
-          </a>
-        </li>
-      </ul>
-    </div>
-  
     <div class="content-container">
       <div class="row">
       </div>
@@ -29,7 +70,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="list-group users-list">
         <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
           <div class="row">
@@ -48,6 +89,7 @@
     </div>
   </div>
 </div>
+
 
 <ng-template #notAdmin>
   Not admin

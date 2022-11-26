@@ -20,7 +20,12 @@ export class NewUserComponent implements OnInit {
   firebaseErrorMessage: string;
   // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
 
-    constructor(private afAuth: AngularFireAuth, private router: Router, private firestore: AngularFirestore, private authService: AuthService ) {
+    constructor(
+        private afAuth: AngularFireAuth, 
+        private router: Router, 
+        private firestore: AngularFirestore, 
+        private authService: AuthService 
+        ) {
         this.user = null;
     }
 
@@ -46,7 +51,7 @@ export class NewUserComponent implements OnInit {
         this.isProgressVisible = true;
         this.authService.signupUser(this.signupForm.value).then((result) => {
             if (result == null)                                 // null is success, false means there was an error
-                this.router.navigate(['/admin']); 
+                this.router.navigate(['/dashboard']);            // navigate to dashboard
             else if (result.isValid == false)
                 this.firebaseErrorMessage = result.message;
 
@@ -56,6 +61,18 @@ export class NewUserComponent implements OnInit {
         });
     }
 
-
+    logout(): void {
+        this.afAuth.signOut()
+        .then(() => {
+            this.router.navigate(['/login']);                    // when we log the user out, navigate them to home
+        })
+        .catch(error => {
+            console.log('Auth Service: logout error...');
+            console.log('error code', error.code);
+            console.log('error', error);
+            if (error.code)
+                return error;
+        });
+    }
 
 }

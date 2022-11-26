@@ -5,7 +5,7 @@
                 <mat-icon>login</mat-icon>
                 <span>Login</span>
             </button>
-            <button class="mt-5" mat-raised-button color="primary" (click)="logout()">
+            <button *ngIf="(user | async)" class="mt-5" mat-raised-button color="primary" (click)="logout()">
                 <mat-icon>logout</mat-icon>
                 <span>Log out</span>
             </button>

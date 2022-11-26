@@ -1,60 +1,100 @@
+<nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between" style="background: #3f51b5; color: white;">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <button mat-button routerLink="/admin">
+                                <mat-icon>admin_panel_settings</mat-icon>
+                                Admin Dashboard
+                            </button>
+                          </li>
+                        <li class="nav-item">
+                            <button mat-button routerLink="/dashboard">
+                                <mat-icon>dashboard</mat-icon>
+                                Dashboard
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button mat-button routerLink="/payments">
+                                <mat-icon> attach_money</mat-icon>
+                                Payments
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button mat-button [matMenuTriggerFor]="menu">Users</button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>
+                                    <a class="nav-link" routerLink="/user-list" style="color: black;">
+                                        <mat-icon>list</mat-icon>
+                                        List Users
+                                    </a>
+                                </button>
+                            </mat-menu>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div>
+        <button mat-button class="justify-content-end" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Logout
+        </button>
+    </div>
+</nav>
+
 <div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin">
     hello admin!
     <br>
     this is a simple test for admin status. a more rigorous test is to edit the auth.guard.ts file :)
-    <div class="page-container">
-        <div class="side-bar">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" routerLink="home">
-                        <mat-icon>dashboard</mat-icon>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" routerLink="home">
-                        <mat-icon>admin_panel_settings</mat-icon>
-                    </a>
-                </li>
-            </ul>
-        </div>
+
+    <div class="row d-flex justify-content-center container-fluid">
+        <div class="col-4 mt-5">
+            <div class="list-group mt-5" id="list-tab" role="tablist">
+                <button mat-raised-button color="primary">
+                    <mat-icon>assignment_ind</mat-icon>
+                    <span>Kullanıcı Ekle</span>
+                </button>
     
-        <div class="content-container">
-            <mat-card class="form-card">
-                <form [formGroup]="signupForm" (ngSubmit)="signup()">
-                    <p>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Full Name</mat-label>
-                            <input autocomplete="off" formControlName="displayName" type="text" matInput
-                                placeholder="Display Name">
-                        </mat-form-field>
-                    </p>
-                    <p>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Email</mat-label>
-                            <input formControlName="email" type="email" matInput placeholder="Email">
-                        </mat-form-field>
-                    </p>
-                    <p>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Password</mat-label>
-                            <input autocomplete="off" formControlName="password" type="password" matInput
-                                placeholder="Password">
-                        </mat-form-field>
-                    </p>
-                    <div *ngIf="firebaseErrorMessage != ''" class="error-style">
-                        <span>{{ firebaseErrorMessage }}</span>
-                    </div>
-    
-                    <button mat-raised-button color="primary">Add User</button>
-                </form>
-            </mat-card>
-    
-            <div class="progressIndicator" [style.display]="isProgressVisible ? 'inline' : 'none' ">
-                <mat-progress-spinner class=" example-margin" color="primary" mode="indeterminate"></mat-progress-spinner>
+                <mat-card>
+                    <form [formGroup]="signupForm" (ngSubmit)="signup()">
+                        <p>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Full Name</mat-label>
+                                <input autocomplete="off" formControlName="displayName" type="text" matInput
+                                    placeholder="Display Name">
+                            </mat-form-field>
+                        </p>
+                        <p>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input formControlName="email" type="email" matInput placeholder="Email">
+                            </mat-form-field>
+                        </p>
+                        <p>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Password</mat-label>
+                                <input autocomplete="off" formControlName="password" type="password" matInput
+                                    placeholder="Password">
+                            </mat-form-field>
+                        </p>
+                        <div *ngIf="firebaseErrorMessage != ''" class="error-style">
+                            <span>{{ firebaseErrorMessage }}</span>
+                        </div>
+        
+                        <button mat-raised-button color="primary">Add User</button>
+                    </form>
+                </mat-card>
+                <div class="progressIndicator" [style.display]="isProgressVisible ? 'inline' : 'none' ">
+                    <mat-progress-spinner class=" example-margin" color="primary" mode="indeterminate"></mat-progress-spinner>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
 
 <ng-template #notAdmin>
     Not admin

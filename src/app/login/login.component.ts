@@ -54,19 +54,5 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    logout(): void {
-        this.afAuth.signOut()
-        .then(() => {
-            this.router.navigate(['/home']);                    // when we log the user out, navigate them to home
-        })
-        .catch(error => {
-            console.log('Auth Service: logout error...');
-            console.log('error code', error.code);
-            console.log('error', error);
-            if (error.code)
-                return error;
-        });
-    }
-
 
 }

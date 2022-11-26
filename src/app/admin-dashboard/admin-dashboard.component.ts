@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
@@ -15,7 +16,11 @@ export class AdminDashboardComponent implements OnInit {
   user: Observable<any>; 
   // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
 
-    constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore ) {
+    constructor(
+        private afAuth: AngularFireAuth,
+        private firestore: AngularFirestore,
+        private router: Router,
+        ) {
         this.user = null;
     }
 
@@ -25,6 +30,20 @@ export class AdminDashboardComponent implements OnInit {
                 let emailLower = user.email.toLowerCase();
                 this.user = this.firestore.collection('users').doc(emailLower).valueChanges(); // get the user's doc in Cloud Firestore
             }
+        });
+    }
+
+    logout(): void {
+        this.afAuth.signOut()
+        .then(() => {
+            this.router.navigate(['/login']);                    // when we log the user out, navigate them to home
+        })
+        .catch(error => {
+            console.log('Auth Service: logout error...');
+            console.log('error code', error.code);
+            console.log('error', error);
+            if (error.code)
+                return error;
         });
     }
 

@@ -1,34 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
-    <!-- Container wrapper -->
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse">
-        <!-- Left links -->
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <button mat-button routerLink="/home">
-                <mat-icon>home</mat-icon>
-                Home
-            </button>
-          </li>
-          <li class="nav-item">
-            <button mat-button routerLink="/payments">
-                <mat-icon> attach_money</mat-icon>
-                Payments
-            </button>
-          </li>
-          <li class="nav-item">
-            <button class="justify-content-end" mat-button >
-                <mat-icon>logout</mat-icon>
-                Logout
-            </button>
-          </li>
-        </ul>
-        <!-- Left links -->
-      </div>
-      <!-- Collapsible wrapper -->
+<nav  class="navbar navbar-expand-lg navbar-light d-flex justify-content-between" style="background: #3f51b5; color: white;">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <button mat-button routerLink="/admin">
+                                <mat-icon>admin_panel_settings</mat-icon>
+                                Admin Dashboard
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button mat-button routerLink="/payments">
+                                <mat-icon> attach_money</mat-icon>
+                                Payments
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </div>
-    <!-- Container wrapper -->
-  </nav>
+
+    <div>
+        <button mat-button class="justify-content-end" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Logout
+        </button>
+    </div>
+</nav>
 
 
 <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -63,30 +65,29 @@
     <div class="col-4 mt-1">
         <div class="list-group mt-2" id="list-tab" role="tablist">
             <div class="content-container">
-                
+
                 <button mat-raised-button color="primary">
                     <mat-icon>home</mat-icon>
-                    <span>Dashboard</span>
+                    <span>Dashboard Page</span>
                 </button>
-
                 <br>
-                <mat-card *ngIf="(user | async)">
+                <mat-card *ngIf="(user | async)" class="mt-2">
                     <mat-card-header>
-                      <mat-card-title>Account Type: {{ (user | async)?.accountType }}</mat-card-title>
-                      <mat-card-title>Display Name: {{ (user | async)?.displayName }}</mat-card-title>
-                      <mat-card-title>Email: {{ (user | async)?.email }}</mat-card-title>
+                        <mat-card-title>Account Type: {{ (user | async)?.accountType }}</mat-card-title>
+                        <mat-card-title>Display Name: {{ (user | async)?.displayName }}</mat-card-title>
+                        <mat-card-title>Email: {{ (user | async)?.email }}</mat-card-title>
                     </mat-card-header>
-                  </mat-card>
-                  <br>
+                </mat-card>
+                <br>
 
-                <mat-list *ngIf="(user | async)">
+                <!-- <mat-list *ngIf="(user | async)">
                     <mat-list-item>Account Type: {{ (user | async)?.accountType }}</mat-list-item>
-                    <mat-list-item>Display Name: {{ (user | async)?.displayName }}</mat-list-item>
-                    <!-- <mat-list-item>Display Name (lower): {{ (user | async)?.displayName_lower }}</mat-list-item> -->
+                    <mat-list-item>Display Name: {{ (user | async)?.displayName }}</mat-list-item> 
+                    <mat-list-item>Display Name (lower): {{ (user | async)?.displayName_lower }}</mat-list-item>
                     <mat-list-item>Email: {{ (user | async)?.email }}</mat-list-item>
-                    <!-- <mat-list-item>Email (lower): {{ (user | async)?.email_lower }}</mat-list-item> -->
-                    <!-- <mat-list-item>Email Verification Status: {{ (afAuth.user | async)?.emailVerified }}</mat-list-item> -->
-                </mat-list>
+                    <mat-list-item>Email (lower): {{ (user | async)?.email_lower }}</mat-list-item>
+                    <mat-list-item>Email Verification Status: {{ (afAuth.user | async)?.emailVerified }}</mat-list-item>
+                </mat-list> -->
             </div>
         </div>
     </div>
