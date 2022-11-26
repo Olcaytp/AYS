@@ -1,4 +1,5 @@
-<nav  class="navbar navbar-expand-lg navbar-light d-flex justify-content-between" style="background: #3f51b5; color: white;">
+<nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between"
+    style="background: #3f51b5; color: white;">
     <div>
         <nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
             <div class="container-fluid">
@@ -32,35 +33,6 @@
     </div>
 </nav>
 
-
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" routerLink="">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="payments">Payments</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown my-2 my-lg-0">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item bg-dark" href="#">Action</a>
-                    <a class="dropdown-item bg-dark" href="#">Another action</a>
-                    <div class="dropdown-divider bg-dark"></div>
-                    <a class="dropdown-item bg-dark" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav> -->
-
 <div class="row d-flex justify-content-start ml-5">
     <div class="col-4 mt-1">
         <div class="list-group mt-2" id="list-tab" role="tablist">
@@ -71,23 +43,27 @@
                     <span>Dashboard Page</span>
                 </button>
                 <br>
-                <mat-card *ngIf="(user | async)" class="mt-2">
-                    <mat-card-header>
-                        <mat-card-title>Account Type: {{ (user | async)?.accountType }}</mat-card-title>
-                        <mat-card-title>Display Name: {{ (user | async)?.displayName }}</mat-card-title>
-                        <mat-card-title>Email: {{ (user | async)?.email }}</mat-card-title>
-                    </mat-card-header>
-                </mat-card>
+                <table *ngIf="(user | async)" id="example" class="table table-striped table-bordered mt-3" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Account Type</th>
+                            <th scope="col">Start Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> {{ (user | async)?.displayName }} </td>
+                            <td> {{ (user | async)?.email }} </td>
+                            <td> {{ (user | async)?.phoneNumber }} </td>
+                            <td> {{ (user | async)?.accountType }} </td>
+                            <td> {{ (user | async)?.startDate }} </td>
+                        </tr>
+                    </tbody>
+                        </table>
                 <br>
-
-                <!-- <mat-list *ngIf="(user | async)">
-                    <mat-list-item>Account Type: {{ (user | async)?.accountType }}</mat-list-item>
-                    <mat-list-item>Display Name: {{ (user | async)?.displayName }}</mat-list-item> 
-                    <mat-list-item>Display Name (lower): {{ (user | async)?.displayName_lower }}</mat-list-item>
-                    <mat-list-item>Email: {{ (user | async)?.email }}</mat-list-item>
-                    <mat-list-item>Email (lower): {{ (user | async)?.email_lower }}</mat-list-item>
-                    <mat-list-item>Email Verification Status: {{ (afAuth.user | async)?.emailVerified }}</mat-list-item>
-                </mat-list> -->
             </div>
         </div>
     </div>

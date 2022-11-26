@@ -24,8 +24,8 @@
               </button>
             </li>
             <li class="nav-item">
-                <button mat-button [matMenuTriggerFor]="menu">Users</button>
-                <mat-menu #menu="matMenu">
+              <button mat-button [matMenuTriggerFor]="menu">Users</button>
+              <mat-menu #menu="matMenu">
                 <button mat-menu-item routerLink="/new-user">
                   <mat-icon>account_circle</mat-icon>
                   Add User
@@ -53,120 +53,33 @@
 
   <div class="page-container">
     <div class="content-container">
-      <div class="row">
-      </div>
-      <div class="row">
-        <div class="col-md-6 offset-md-1">
-          <div class="input-group">
-            <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}"
-              placeholder="Search by name..." (keyup)="searchByName()">
-            <div class="input-group-append">
-              <span class="input-group-text">
-                <ion-icon class="icon" name="search"></ion-icon>
-              </span>
-            </div>
-          </div>
-        </div>
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Account Type</th>
+              <th scope="col">Start Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items">
+              <td> {{item.payload.doc.data().displayName}} </td>
+              <td> {{item.payload.doc.data().email}} </td>
+              <td> {{item.payload.doc.data().phoneNumber}} </td>
+              <td> {{item.payload.doc.data().accountType}} </td>
+              <td> {{item.payload.doc.data().startDate}} </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <div class="list-group users-list">
-        <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="row">
-            <div class="col col-md-10 text-col">
-              <h5 class="mb-1">{{item.payload.doc.data().displayName}}</h5>
-              <h5 class="mb-1">{{item.payload.doc.data().email}}</h5>
-            </div>
-            <div class="col col-md-2 actions-col">
-              <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
-                <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
 
-
 <ng-template #notAdmin>
   Not admin
 </ng-template>
-
-
-
-
-
-
-
-<!-- <div class="page-container">
-  <div class="side-bar" >
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" routerLink="">
-          <mat-icon>add_to_home_screen</mat-icon>
-          </a>
-        </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="new-user">
-                  <mat-icon>person_add</mat-icon>
-                  </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="user-list">
-                  <mat-icon>list</mat-icon>
-                  </a>
-            </li>
-      </ul>
-    </div>
-  
-    <div class="content-container">
-      <div class="row">
-        <div class="col-md-4 offset-md-1">
-          <div class="input-group">
-            <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
-            <div class="input-group-append">
-              <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 filter-by-age">
-          <div class="row">
-            <div class="col-md-auto title">
-              <span>Filter by age (older than):</span>
-            </div>
-            <div class="col">
-              <span>0 </span>
-              <mat-slider
-                class="age-slider"
-                max="100"
-                min="0"
-                step="1"
-                thumbLabel="true"
-                (ngModel)="ageValue"
-                (change)="rangeChange($event)">
-              </mat-slider>
-              <span> 100</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="list-group users-list">
-        <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="row">
-            <div class="col col-md-10 text-col">
-              <h5 class="mb-1">{{item.payload.doc.data().displayName}} {{item.payload.doc.data().email}}</h5>
-              <small>Age: {{item.payload.doc.data().age}}</small>
-            </div>
-            <div class="col col-md-2 actions-col">
-              <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
-                <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-  </div>
-   -->

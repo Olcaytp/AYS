@@ -59,13 +59,27 @@
                     <br>
                     this is a simple test for admin status. a more rigorous test is to edit the auth.guard.ts file :)
 
-                    <mat-card *ngIf="(user | async)" class="mt-2">
-                        <mat-card-header>
-                          <mat-card-title>Account Type: {{ (user | async)?.accountType }}</mat-card-title>
-                          <mat-card-title>Display Name: {{ (user | async)?.displayName }}</mat-card-title>
-                          <mat-card-title>Email: {{ (user | async)?.email }}</mat-card-title>
-                        </mat-card-header>
-                      </mat-card>
+                    
+                <table *ngIf="(user | async)" id="example" class="table table-striped table-bordered mt-3" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Account Type</th>
+                            <th scope="col">Start Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> {{ (user | async)?.displayName }} </td>
+                            <td> {{ (user | async)?.email }} </td>
+                            <td> {{ (user | async)?.phoneNumber }} </td>
+                            <td> {{ (user | async)?.accountType }} </td>
+                            <td> {{ (user | async)?.startDate }} </td>
+                        </tr>
+                    </tbody>
+                        </table>
                 </div>
                 <ng-template #notAdmin>
                     Not admin

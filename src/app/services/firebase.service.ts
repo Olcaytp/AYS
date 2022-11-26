@@ -43,7 +43,10 @@ export class FirebaseService {
       surname: value.surname,
       age: parseInt(value.age),
       email: value.email,
-      password: value.password
+      password: value.password,
+      uid: value.uid,
+      phone: value.phone,
+      date: value.date,
     });
   }
 }

@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FirebaseService } from '../services/firebase.service';
 
+
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -32,7 +34,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
-
+    const dataSource = this.items;
     this.afAuth.authState.subscribe(user => {               // grab the user object from Firebase Authorization
       if (user) {
           let emailLower = user.email.toLowerCase();
@@ -51,35 +53,36 @@ export class UserListComponent implements OnInit {
     })
   }
 
-  viewDetails(item){
-    this.router.navigate(['/details'+ item.payload.doc.id]);
-    console.log('UserListComponent: viewDetails: item', item.payload.doc.id);
-
-    this.afAuth.authState.subscribe(user => {
-      console.log('Dashboard: user', user);
-
-      if (user) {
-          let emailLower = user.email.toLowerCase();
-          this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
-          console.log('user is logged in');
-          console.log("this is user.uid = " + user.uid);
-          console.log("-----------------------");
-      }
-  });
-
+  deleteuser(item) {
+    this.firebaseService.deleteUser(item)
+    .then(() => {
+      this.getData();
+    }, err => {
+      console.log(err);
+    });
   }
+
+  // viewDetails(item){
+  //   // this.router.navigate(['../../details'+ item.payload.doc.id]);
+  //   this.router.navigate(['/details']);
+  //   console.log('UserListComponent: viewDetails: item', item.payload.doc.id);
+
+  //   this.afAuth.authState.subscribe(user => {
+  //     console.log('Dashboard: user', user);
+
+  //     if (user) {
+  //         let emailLower = user.email.toLowerCase();
+  //         this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
+  //         console.log('user is logged in');
+  //         console.log("this is user.uid = " + user.uid);
+  //         console.log("-----------------------");
+  //     }
+  // });
+
+  // }
 
   capitalizeFirstLetter(value){
     return value.charAt(0).toUpperCase() + value.slice(1);
-  }
-
-  searchByName(){
-    let value = this.searchValue.toLowerCase();
-    this.firebaseService.searchUsers(value)
-    .subscribe(result => {
-      this.name_filtered_items = result;
-      this.items = this.combineLists(result, this.email_filtered_items);
-    })
   }
 
   combineLists(a, b){
