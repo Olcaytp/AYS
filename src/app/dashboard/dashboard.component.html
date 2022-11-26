@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                        <li *ngIf="(user | async)?.accountType == 'admin';" class="nav-item">
                             <button mat-button routerLink="/admin">
                                 <mat-icon>admin_panel_settings</mat-icon>
                                 Admin Dashboard

@@ -19,19 +19,15 @@
                         <li class="nav-item">
                             <button mat-button [matMenuTriggerFor]="menu">Users</button>
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item>
-                                    <a class="nav-link" routerLink="/new-user" style="color: black;">
-                                        <mat-icon>person_add</mat-icon>
-                                        Add User
-                                    </a>
-                                </button>
-                                <button mat-menu-item>
-                                    <a class="nav-link" routerLink="../user-list" style="color: black;">
-                                        <mat-icon>list</mat-icon>
-                                        User List
-                                    </a>
-                                </button>
-                            </mat-menu>
+                            <button mat-menu-item routerLink="/new-user">
+                              <mat-icon>account_circle</mat-icon>
+                              Add User
+                            </button>
+                            <button mat-menu-item routerLink="../user-list">
+                              <mat-icon>list</mat-icon>
+                              User List
+                            </button>
+                          </mat-menu>
                         </li>
                     </ul>
                 </div>

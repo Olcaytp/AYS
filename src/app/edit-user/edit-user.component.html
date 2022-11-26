@@ -1,1 +1,120 @@
-<p>edit-user works!</p>
+<nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between" style="background: #3f51b5; color: white;">
+  <div>
+      <nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
+          <div class="container-fluid">
+              <div class="collapse navbar-collapse">
+                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                          <button mat-button routerLink="/admin">
+                              <mat-icon>admin_panel_settings</mat-icon>
+                              Admin Dashboard
+                          </button>
+                        </li>
+                      <li class="nav-item">
+                          <button mat-button routerLink="/dashboard">
+                              <mat-icon>dashboard</mat-icon>
+                              Dashboard
+                          </button>
+                      </li>
+                      <li class="nav-item">
+                          <button mat-button routerLink="/payments">
+                              <mat-icon> attach_money</mat-icon>
+                              Payments
+                          </button>
+                      </li>
+                      <li class="nav-item">
+                          <button mat-button [matMenuTriggerFor]="menu">Users</button>
+                          <mat-menu #menu="matMenu">
+                          <button mat-menu-item routerLink="/new-user">
+                            <mat-icon>account_circle</mat-icon>
+                            Add User
+                          </button>
+                        <button mat-menu-item routerLink="../user-list">
+                          <mat-icon>list</mat-icon>
+                          User List
+                        </button>
+                      </mat-menu>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+  </div>
+  <div>
+      <button mat-button class="justify-content-end" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Logout
+      </button>
+  </div>
+</nav>
+
+<div
+  class="form-container mat-elevation-z5 text-center"
+  *ngIf="(user | async)"
+>
+  <h1>Update Profile</h1>
+  <div class="profile-image">
+    <img
+      width="120"
+      height="120"
+      class="margin-top mat-elevation-z1"
+      [src]="user.photoURL ?? '/assets/images/image-placeholder.png'"
+    />
+    <button mat-mini-fab (click)="inputField.click()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+  <input #inputField hidden type="file" (change)="uploadFile($event, user)" />
+
+  <form class="margin-top" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+    <div class="row">
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          formControlName="firstName"
+          placeholder="First Name"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          formControlName="lastName"
+          placeholder="Last Name"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          formControlName="displayName"
+          placeholder="Display Name"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="number"
+          matInput
+          formControlName="phone"
+          placeholder="Phone"
+        />
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        formControlName="address"
+        placeholder="Address"
+      />
+    </mat-form-field>
+
+    <button type="submit" class="margin-top" mat-raised-button color="primary">
+      Save
+    </button>
+  </form>
+</div>

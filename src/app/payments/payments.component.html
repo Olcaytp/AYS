@@ -1,1 +1,40 @@
+<nav  class="navbar navbar-expand-lg navbar-light d-flex justify-content-between" style="background: #3f51b5; color: white;">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li *ngIf="(user | async)?.accountType == 'admin';" class="nav-item">
+                            <button mat-button routerLink="/admin">
+                                <mat-icon>admin_panel_settings</mat-icon>
+                                Admin Dashboard
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button mat-button routerLink="/dashboard">
+                                <mat-icon>dashboard</mat-icon>
+                                Dashboard
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button mat-button routerLink="/payments">
+                                <mat-icon> attach_money</mat-icon>
+                                Payments
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div>
+        <button mat-button class="justify-content-end" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Logout
+        </button>
+    </div>
+</nav>
 <p>payments works!</p>
