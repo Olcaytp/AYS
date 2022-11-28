@@ -27,9 +27,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
-  { path: 'new-user', component: NewUserComponent, canActivate: [AuthGuard] },
+  // { path: 'new-user', component: NewUserComponent, canActivate: [AuthGuard] },
   { path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
-  { path: 'details', component: EditUserComponent, canActivate: [AuthGuard] },
+  { path: 'details/:id', component: EditUserComponent, canActivate: [AuthGuard] },
   { path: '**', component: DashboardComponent },                       // catch-all in case no other path matched
 ];
 

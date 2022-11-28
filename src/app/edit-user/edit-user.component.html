@@ -1,120 +1,75 @@
-<nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between" style="background: #3f51b5; color: white;">
-  <div>
-      <nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
-          <div class="container-fluid">
-              <div class="collapse navbar-collapse">
-                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                      <li class="nav-item">
-                          <button mat-button routerLink="/admin">
-                              <mat-icon>admin_panel_settings</mat-icon>
-                              Admin Dashboard
-                          </button>
-                        </li>
-                      <li class="nav-item">
-                          <button mat-button routerLink="/dashboard">
-                              <mat-icon>dashboard</mat-icon>
-                              Dashboard
-                          </button>
-                      </li>
-                      <li class="nav-item">
-                          <button mat-button routerLink="/payments">
-                              <mat-icon> attach_money</mat-icon>
-                              Payments
-                          </button>
-                      </li>
-                      <li class="nav-item">
-                          <button mat-button [matMenuTriggerFor]="menu">Users</button>
-                          <mat-menu #menu="matMenu">
-                          <button mat-menu-item routerLink="/new-user">
-                            <mat-icon>account_circle</mat-icon>
-                            Add User
-                          </button>
-                        <button mat-menu-item routerLink="../user-list">
-                          <mat-icon>list</mat-icon>
-                          User List
-                        </button>
-                      </mat-menu>
-                      </li>
-                  </ul>
-              </div>
+<div class="edit-page">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Edit User</li>
+    </ol>
+  </nav>
+  <div class="page-content">
+    <div class="row">
+      <div class="col col-md-8">
+
+        <form class="edit-form" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)" *ngIf="exampleForm">
+
+          <div class="form-group">
+            <mat-form-field class="input-style">
+              <input matInput placeholder="Name" class="form-control" formControlName="name">
+            </mat-form-field>
+            <ng-container *ngFor="let validation of validation_messages.name">
+              <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+            </ng-container>
           </div>
-      </nav>
-  </div>
-  <div>
-      <button mat-button class="justify-content-end" (click)="logout()">
-          <mat-icon>logout</mat-icon>
-          Logout
-      </button>
-  </div>
-</nav>
 
-<div
-  class="form-container mat-elevation-z5 text-center"
-  *ngIf="(user | async)"
->
-  <h1>Update Profile</h1>
-  <div class="profile-image">
-    <img
-      width="120"
-      height="120"
-      class="margin-top mat-elevation-z1"
-      [src]="user.photoURL ?? '/assets/images/image-placeholder.png'"
-    />
-    <button mat-mini-fab (click)="inputField.click()">
-      <mat-icon>edit</mat-icon>
-    </button>
-  </div>
-  <input #inputField hidden type="file" (change)="uploadFile($event, user)" />
+          <div class="form-group">
+            <mat-form-field class="input-style">
+              <input matInput placeholder="Surname" class="form-control" formControlName="surname">
+            </mat-form-field>
+            <ng-container *ngFor="let validation of validation_messages.surname">
+              <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
+            </ng-container>
+          </div>
 
-  <form class="margin-top" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
-    <div class="row">
-      <mat-form-field>
-        <input
-          type="text"
-          matInput
-          formControlName="firstName"
-          placeholder="First Name"
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          type="text"
-          matInput
-          formControlName="lastName"
-          placeholder="Last Name"
-        />
-      </mat-form-field>
+          <div class="form-group">
+            <mat-form-field class="input-style">
+              <input matInput type="number" min="0" max="100" placeholder="Age" class="form-control" formControlName="age">
+            </mat-form-field>
+            <ng-container *ngFor="let validation of validation_messages.age">
+              <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
+            </ng-container>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field class="input-style">
+              <input matInput placeholder="Email" class="form-control" formControlName="email">
+            </mat-form-field>
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <mat-error *ngIf="exampleForm.get('email').hasError(validation.type) && (exampleForm.get('email').dirty || exampleForm.get('email').touched)">{{validation.message}}</mat-error>
+            </ng-container>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field class="input-style">
+              <input matInput placeholder="Password" class="form-control" formControlName="password">
+            </mat-form-field>
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <mat-error *ngIf="exampleForm.get('password').hasError(validation.type) && (exampleForm.get('password').dirty || exampleForm.get('password').touched)">{{validation.message}}</mat-error>
+            </ng-container>
+          </div>
+          <div>
+            <mat-form-field class="input-style">
+              <input matInput placeholder="Complaints" class="form-control" formControlName="complaints">
+            </mat-form-field>
+          </div>
+
+          <div class="row submit-button-container">
+            <div class="col-md-4">
+              <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="!exampleForm.valid">Save</button>
+            </div>
+            <div class="col-md-4">
+              <button mat-raised-button class="delete-button" color="warn" type="button" (click)="delete()">Delete</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-
-    <div class="row">
-      <mat-form-field>
-        <input
-          type="text"
-          matInput
-          formControlName="displayName"
-          placeholder="Display Name"
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          type="number"
-          matInput
-          formControlName="phone"
-          placeholder="Phone"
-        />
-      </mat-form-field>
-    </div>
-    <mat-form-field>
-      <input
-        type="text"
-        matInput
-        formControlName="address"
-        placeholder="Address"
-      />
-    </mat-form-field>
-
-    <button type="submit" class="margin-top" mat-raised-button color="primary">
-      Save
-    </button>
-  </form>
+  </div>
 </div>

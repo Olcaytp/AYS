@@ -10,6 +10,7 @@ export class FirebaseService {
 
   getUser(userKey){
     return this.db.collection('users').doc(userKey).snapshotChanges();
+    console.log(this.db.collection('users').doc(userKey).snapshotChanges());
   }
 
   updateUser(userKey, value){

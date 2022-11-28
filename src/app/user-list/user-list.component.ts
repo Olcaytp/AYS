@@ -62,24 +62,14 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  // viewDetails(item){
-  //   // this.router.navigate(['../../details'+ item.payload.doc.id]);
-  //   this.router.navigate(['/details']);
-  //   console.log('UserListComponent: viewDetails: item', item.payload.doc.id);
-
-  //   this.afAuth.authState.subscribe(user => {
-  //     console.log('Dashboard: user', user);
-
-  //     if (user) {
-  //         let emailLower = user.email.toLowerCase();
-  //         this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
-  //         console.log('user is logged in');
-  //         console.log("this is user.uid = " + user.uid);
-  //         console.log("-----------------------");
-  //     }
-  // });
-
-  // }
+  viewDetails(item){
+    this.router.navigate(['/details/'+ item.payload.doc.id]);
+    console.log("home.component.ts => item.payload.doc.id"); //  same as edituser.ts=> this.item.id:
+    console.log(item.payload.doc.id);
+    console.log(item.payload.doc.data());
+    console.log(item.payload.doc.data().name);
+    console.log(item.payload.doc);
+  }
 
   capitalizeFirstLetter(value){
     return value.charAt(0).toUpperCase() + value.slice(1);

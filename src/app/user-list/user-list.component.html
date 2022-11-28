@@ -62,6 +62,7 @@
               <th scope="col">Phone Number</th>
               <th scope="col">Account Type</th>
               <th scope="col">Start Date</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -71,11 +72,15 @@
               <td> {{item.payload.doc.data().phoneNumber}} </td>
               <td> {{item.payload.doc.data().accountType}} </td>
               <td> {{item.payload.doc.data().startDate}} </td>
+              <td>
+                <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
+                <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
+              </button>
+            </td>
             </tr>
           </tbody>
         </table>
       </div>
-
     </div>
   </div>
 </div>
