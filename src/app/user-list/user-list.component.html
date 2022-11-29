@@ -53,8 +53,8 @@
 
   <div class="page-container">
     <div class="content-container">
-      <div>
-        <table class="table">
+      <div class="table-responsive">
+        <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
           <thead>
             <tr>
               <th scope="col">Name</th>
@@ -65,18 +65,25 @@
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             <tr *ngFor="let item of items">
               <td> {{item.payload.doc.data().displayName}} </td>
               <td> {{item.payload.doc.data().email}} </td>
               <td> {{item.payload.doc.data().phoneNumber}} </td>
               <td> {{item.payload.doc.data().accountType}} </td>
               <td> {{item.payload.doc.data().startDate}} </td>
-              <td>
-                <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
-                <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
-              </button>
-            </td>
+              <td class="text-center action-block">
+                <span>
+                  <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
+                    <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
+                  </button>
+                </span>
+                <span
+                  class="btn btn-outline-danger btn-sm"
+                  (click)="deleteuser(item)"
+                  >Delete</span
+                >
+              </td>
             </tr>
           </tbody>
         </table>

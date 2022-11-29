@@ -61,14 +61,24 @@ export class EditUserComponent implements OnInit {
   ngOnInit() {
     console.log("edituser.ts= ngOnInit()", this.route.snapshot.params['id']);
     this.route.data.subscribe(routeData => {
-      let data = routeData['id'];
+      let data = routeData['data'];
       if (data) {
-        this.item = data;
+        this.item = data.payload.data();
         this.item.id = data.payload.id;
-        console.log("edituser.ts= ngOnInit() this.item: ", this.item);
-        console.log("edituser.ts= ngOnInit() this.item:2 ", this.item.id);
-        console.log("edituser.ts= ngOnInit() this.item:3 ", this.item.name);
-        console.log("edituser.ts= ngOnInit() this.item:4 ", this.item.surname);
+        this.item.displayName = data.payload.data().displayName;
+        this.item.email = data.payload.data().email;
+        this.item.password = data.payload.data().password;
+        this.item.complaints = data.payload.data().complaints;
+        this.item.accountType = data.payload.data().accountType;
+        this.item.phoneNumber = data.payload.data().phoneNumber;
+        this.item.startDate = data.payload.data().startDate;
+
+        console.log("data: ", data.payload.data());
+
+        console.log("edituser.ts= ngOnInit() this.item: ", this.item.id);
+        console.log("edituser.ts= ngOnInit() this.item:2 ", this.item.displayName);
+        console.log("edituser.ts= ngOnInit() this.item:3 ", this.item.email);
+        console.log("edituser.ts= ngOnInit() this.item:4 ", this.item.accountType);
         this.createForm();
       }
     })
@@ -78,18 +88,18 @@ export class EditUserComponent implements OnInit {
 
   createForm() {
     this.exampleForm = this.fb.group({
-      name: [this.item.name, Validators.required],
-      surname: [this.item.surname, Validators.required],
-      age: [this.item.age, Validators.required],
+      displayName: [this.item.displayName, Validators.required],
       email: [this.item.email, Validators.required],
       password: [this.item.password, Validators.required],
+      accountType: [this.item.accountType, Validators.required],
+      phoneNumber: [this.item.phoneNumber, Validators.required],
+      startDate: [this.item.startDate, Validators.required],
       complaints: [this.item.complaints],
     });
   }
 
 
   onSubmit(value){
-    value.age = Number(value.age);
     this.firebaseService.updateUser(this.item.id, value)
     .then(
       res => {
@@ -100,17 +110,17 @@ export class EditUserComponent implements OnInit {
     console.log('userKey: ' + this.item.id);
   }
 
-  delete(){
-    this.firebaseService.deleteUser(this.item.id)
-    .then(
-      res => {
-        this.router.navigate(['/user-list']);
-      },
-      err => {
-        console.log(err);
-      }
-    )
-  }
+  // delete(){
+  //   this.firebaseService.deleteUser(this.item.id)
+  //   .then(
+  //     res => {
+  //       this.router.navigate(['/user-list']);
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   )
+  // }
 
   cancel(){
     this.router.navigate(['/user-list']);

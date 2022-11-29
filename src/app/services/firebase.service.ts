@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,11 +11,11 @@ export class FirebaseService {
 
   getUser(userKey){
     return this.db.collection('users').doc(userKey).snapshotChanges();
-    console.log(this.db.collection('users').doc(userKey).snapshotChanges());
   }
 
   updateUser(userKey, value){
-    value.nameToSearch = value.name.toLowerCase();
+    value.nameToSearch = value.displayName.toLowerCase();
+    console.log("value1: " + value.nameToSearch);
     return this.db.collection('users').doc(userKey).set(value);
   }
 
@@ -36,6 +37,9 @@ export class FirebaseService {
     return this.db.collection('users',ref => ref.orderBy('age').startAt(value)).snapshotChanges();
   }
 
+  searchUsersByID(value){
+    return this.db.collection('users',ref => ref.where('uid', '==', value)).snapshotChanges();
+  }
 
   createUser(value){
     return this.db.collection('users').add({
@@ -48,6 +52,13 @@ export class FirebaseService {
       uid: value.uid,
       phone: value.phone,
       date: value.date,
+    });
+  }
+
+  createAnouncement(value){
+    return this.db.collection('anons').add({
+      title: value.name,
+      content: value.content,
     });
   }
 }

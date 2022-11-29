@@ -1,4 +1,5 @@
-<nav  class="navbar navbar-expand-lg navbar-light d-flex justify-content-between" style="background: #3f51b5; color: white;">
+<nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between"
+    style="background: #3f51b5; color: white;">
     <div>
         <nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
             <div class="container-fluid">
@@ -19,15 +20,15 @@
                         <li class="nav-item">
                             <button mat-button [matMenuTriggerFor]="menu">Users</button>
                             <mat-menu #menu="matMenu">
-                            <button mat-menu-item routerLink="/new-user">
-                              <mat-icon>account_circle</mat-icon>
-                              Add User
-                            </button>
-                            <button mat-menu-item routerLink="../user-list">
-                              <mat-icon>list</mat-icon>
-                              User List
-                            </button>
-                          </mat-menu>
+                                <button mat-menu-item routerLink="/new-user">
+                                    <mat-icon>account_circle</mat-icon>
+                                    Add User
+                                </button>
+                                <button mat-menu-item routerLink="../user-list">
+                                    <mat-icon>list</mat-icon>
+                                    User List
+                                </button>
+                            </mat-menu>
                         </li>
                     </ul>
                 </div>
@@ -48,7 +49,7 @@
     <div class="col-4 mt-1">
         <div class="list-group mt-2" id="list-tab" role="tablist">
             <div class="content-container">
-                
+
                 <button mat-raised-button color="primary">
                     <mat-icon>home</mat-icon>
                     <span>Admin Dashboard Page</span>
@@ -58,28 +59,6 @@
                     hello admin!
                     <br>
                     this is a simple test for admin status. a more rigorous test is to edit the auth.guard.ts file :)
-
-                    
-                <table *ngIf="(user | async)" id="example" class="table table-striped table-bordered mt-3" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone Number</th>
-                            <th scope="col">Account Type</th>
-                            <th scope="col">Start Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td> {{ (user | async)?.displayName }} </td>
-                            <td> {{ (user | async)?.email }} </td>
-                            <td> {{ (user | async)?.phoneNumber }} </td>
-                            <td> {{ (user | async)?.accountType }} </td>
-                            <td> {{ (user | async)?.startDate }} </td>
-                        </tr>
-                    </tbody>
-                        </table>
                 </div>
                 <ng-template #notAdmin>
                     Not admin
@@ -90,7 +69,70 @@
 </div>
 
 
- <!-- <div class="page-container">
+
+<div class="col-8 mt-5">
+    <div class="content-container">
+        <div class="table-responsive">
+            <table *ngIf="(user | async)?.accountType == 'admin'; else notAdmin" id="example"
+                class="table table-striped table-bordered mt-3" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Account Type</th>
+                        <th scope="col">Start Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> {{ (user | async)?.displayName }} </td>
+                        <td> {{ (user | async)?.email }} </td>
+                        <td> {{ (user | async)?.phoneNumber }} </td>
+                        <td> {{ (user | async)?.accountType }} </td>
+                        <td> {{ (user | async)?.startDate }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 
+    <div class="col-8 mt-5">
+    <div class="content-container">
+        <div class="table-responsive">
+            <table **ngIf="(user | async)?.accountType == 'admin'; else notAdmin" id="example"
+                class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Account Type</th>
+                        <th scope="col">Start Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> {{ (user | async)?.displayName }} </td>
+                        <td> {{ (user | async)?.email }} </td>
+                        <td> {{ (user | async)?.phoneNumber }} </td>
+                        <td> {{ (user | async)?.accountType }} </td>
+                        <td> {{ (user | async)?.startDate }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ -->
+
+
+
+<!-- <div class="page-container">
 
     <div class="content-container">
         Admin Dashboard

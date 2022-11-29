@@ -24,7 +24,7 @@ export class PaymentsComponent implements OnInit {
       this.afAuth.authState.subscribe(user => {               // grab the user object from Firebase Authorization
           if (user) {
               let emailLower = user.email.toLowerCase();
-              this.user = this.firestore.collection('users').doc(emailLower).valueChanges(); // get the user's doc in Cloud Firestore
+              this.user = this.firestore.collection('users').doc(user.uid).valueChanges(); // get the user's doc in Cloud Firestore
           }
       });
   }

@@ -13,7 +13,6 @@ import { FirebaseService } from '../services/firebase.service';
 export class EditUserResolver implements Resolve<any> {
 
   constructor(public firebaseService: FirebaseService) { }
-
   resolve(route: ActivatedRouteSnapshot,) {
 
     return new Promise((resolve, reject) => {
@@ -22,7 +21,6 @@ export class EditUserResolver implements Resolve<any> {
       .subscribe(
         data => {
           resolve(data);
-            console.log('user is working', userId);
         }
       );
     })

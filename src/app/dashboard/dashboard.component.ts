@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
 
             if (user) {
                 let emailLower = user.email.toLowerCase();
-                this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
+                this.user = this.firestore.collection('users').doc(user.uid).valueChanges();
                 console.log('user is logged in');
                 console.log("this is user.uid = " + user.uid);
             }

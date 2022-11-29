@@ -14,8 +14,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AuthGuard } from './services/auth.guard';
 import { NewUserComponent } from './new-user/new-user.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
 import { PaymentsComponent } from './payments/payments.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditUserResolver } from './edit-user/edit-user.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -29,7 +30,7 @@ const routes: Routes = [
   { path: 'verify-email', component: VerifyEmailComponent },
   // { path: 'new-user', component: NewUserComponent, canActivate: [AuthGuard] },
   { path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
-  { path: 'details/:id', component: EditUserComponent, canActivate: [AuthGuard] },
+  { path: 'details/:id', component: EditUserComponent, resolve:{data : EditUserResolver}, canActivate: [AuthGuard] },
   { path: '**', component: DashboardComponent },                       // catch-all in case no other path matched
 ];
 

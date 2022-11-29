@@ -5,6 +5,15 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FirebaseService } from '../services/firebase.service';
+import {
+  addDoc,
+  Firestore,
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc
+} from '@angular/fire/firestore'
 
 
 
@@ -38,7 +47,7 @@ export class UserListComponent implements OnInit {
     this.afAuth.authState.subscribe(user => {               // grab the user object from Firebase Authorization
       if (user) {
           let emailLower = user.email.toLowerCase();
-          this.user = this.firestore.collection('users').doc(emailLower).valueChanges(); // get the user's doc in Cloud Firestore
+          this.user = this.firestore.collection('users').doc(user.uid).valueChanges(); // get the user's doc in Cloud Firestore
       }
   });
   }
@@ -53,21 +62,16 @@ export class UserListComponent implements OnInit {
     })
   }
 
-  deleteuser(item) {
-    this.firebaseService.deleteUser(item)
-    .then(() => {
-      this.getData();
-    }, err => {
-      console.log(err);
-    });
-  }
+  deleteuser(item){
+    this.firebaseService.deleteUser(item.payload.doc.id);
+  };
 
   viewDetails(item){
-    this.router.navigate(['/details/'+ item.payload.doc.id]);
-    console.log("home.component.ts => item.payload.doc.id"); //  same as edituser.ts=> this.item.id:
+    this.router.navigate(['/details/' + item.payload.doc.id]);
+    console.log("item.payload.doc.id"); //  same as edituser.t=> this.item.id:
     console.log(item.payload.doc.id);
     console.log(item.payload.doc.data());
-    console.log(item.payload.doc.data().name);
+    console.log(item.payload.doc.data().displayName);
     console.log(item.payload.doc);
   }
 

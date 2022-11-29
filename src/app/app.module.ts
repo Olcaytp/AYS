@@ -66,9 +66,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 
@@ -85,8 +85,8 @@ import { UserListComponent } from './user-list/user-list.component';
     VerifyEmailComponent,
     NewUserComponent,
     UserListComponent,
-    EditUserComponent,
-    PaymentsComponent
+    PaymentsComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

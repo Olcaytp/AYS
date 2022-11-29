@@ -45,7 +45,7 @@ export class AuthService {
             .then((result) => {
                 let emailLower = user.email.toLowerCase();
 
-                this.afs.doc('/users/' + emailLower)                        // on a successful signup, create a document in 'users' collection with the new user's info
+                this.afs.doc('/users/' + result.user.uid)                        // on a successful signup, create a document in 'users' collection with the new user's info
                     .set({
                         accountType: 'DaireSakini',
                         displayName: user.displayName,
