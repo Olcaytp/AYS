@@ -6,29 +6,22 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <button mat-button routerLink="/dashboard">
-                                <mat-icon>dashboard</mat-icon>
-                                Dashboard
-                            </button>
-                        </li>
-                        <li class="nav-item">
                             <button mat-button routerLink="/payments">
                                 <mat-icon> attach_money</mat-icon>
                                 Payments
                             </button>
                         </li>
                         <li class="nav-item">
-                            <button mat-button [matMenuTriggerFor]="menu">Users</button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item routerLink="/new-user">
-                                    <mat-icon>account_circle</mat-icon>
-                                    Add User
-                                </button>
-                                <button mat-menu-item routerLink="../user-list">
-                                    <mat-icon>list</mat-icon>
-                                    User List
-                                </button>
-                            </mat-menu>
+                            <button mat-button routerLink="/user-list">
+                                <mat-icon>list</mat-icon>
+                                Users
+                            </button>
+                        </li>
+                        <li>
+                            <button mat-button routerLink="/announces">
+                            <mat-icon>add_alert</mat-icon>
+                            Anounces
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -101,97 +94,39 @@
 
 
 <div class="col-8 mt-5">
-    <button mat-raised-button color="primary" class="ml-5" >
+    <button mat-raised-button color="primary" class="ml-3" >
         <mat-icon>add_alert</mat-icon>
           <span>Duyuru Oluştur</span>
       </button>
-  <div class="row d-flex">
-    <div class="col col-md-8" style="max-height: 100vh">
-      <form [formGroup]="AnounceForm" (ngSubmit)="save()">
-        <div class="mb-3">
-            <label for="title" class="form-label">Başlık</label>
+
+      <div class="submit-form">
+        <div>
+          <div #anounceform class="form-group">
+            <label for="title">Title</label>
             <input
               type="text"
               class="form-control"
               id="title"
-              formControlName="title"
+              required
+              [(ngModel)]="anounce.title"
+              name="title"
             />
           </div>
-          <div class="mb-3">
-            <label for="content" class="form-label">İçerik</label>
+      
+          <div class="form-group">
+            <label for="description">Description</label>
             <input
-              type="text"
               class="form-control"
-              id="content"
-              formControlName="content"
+              id="description"
+              required
+              [(ngModel)]="anounce.description"
+              name="description"
             />
           </div>
-          <button type="submit" class="btn btn-primary">Save</button>
-      </form>
-    </div>
-    <div class="col col-md-4">
-      <div style="position: fixed">{{ preview }}</div>
-    </div>
-  </div>
+      
+          <button (click)="saveAnouncement()" class="btn btn-success">Submit</button>
+        </div>
+</div>
 </div>
 
 
-
-<!-- 
-    <div class="col-8 mt-5">
-    <div class="content-container">
-        <div class="table-responsive">
-            <table **ngIf="(user | async)?.accountType == 'admin'; else notAdmin" id="example"
-                class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone Number</th>
-                        <th scope="col">Account Type</th>
-                        <th scope="col">Start Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td> {{ (user | async)?.displayName }} </td>
-                        <td> {{ (user | async)?.email }} </td>
-                        <td> {{ (user | async)?.phoneNumber }} </td>
-                        <td> {{ (user | async)?.accountType }} </td>
-                        <td> {{ (user | async)?.startDate }} </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
- -->
-
-
-
-<!-- <div class="page-container">
-
-    <div class="content-container">
-        Admin Dashboard
-
-        <br>
-        <br>
-<button mat-raised-button color="primary" routerLink="/home">
-    <mat-icon>home</mat-icon>
-    <span>Home</span>
-</button> 
-
-        <br>
-        <br>
-
-        <div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin">
-            hello admin!
-            <br>
-            this is a simple test for admin status. a more rigorous test is to edit the auth.guard.ts file :)
-        </div>
-
-        <ng-template #notAdmin>
-            Not admin
-        </ng-template>
-    </div>
-</div>  -->

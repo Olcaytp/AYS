@@ -1,36 +1,44 @@
-<nav class="navbar navbar-expand navbar-light d-flex justify-content-between"
-    style="background: #3f51b5; color: white;">
-    <div>
-        <nav class="navbar navbar-expand navbar-light" style="background: #3f51b5; color: white;">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li *ngIf="(user | async)?.accountType == 'admin';" class="nav-item">
-                            <button mat-button routerLink="/admin">
-                                <mat-icon>admin_panel_settings</mat-icon>
-                                Admin Dashboard
-                            </button>
-                        </li>
-                        <li class="nav-item">
-                            <button mat-button routerLink="/payments">
-                                <mat-icon> attach_money</mat-icon>
-                                Payments
-                            </button>
-                        </li>
-                        <li class="nav-item">
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-
-    <div>
-        <button mat-button class="justify-content-end" (click)="logout()">
-            <mat-icon>logout</mat-icon>
-            Logout
-        </button>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between"
+  style="background: #3f51b5; color: white;">
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
+              <button mat-button routerLink="/admin">
+                <mat-icon>admin_panel_settings</mat-icon>
+                Admin Dashboard
+              </button>
+            </li>
+            <li class="nav-item" *ngIf="(user | async)?.accountType != 'admin'">
+              <button mat-button routerLink="/dashboard">
+                <mat-icon>dashboard</mat-icon>
+                Dashboard
+              </button>
+            </li>
+            <li class="nav-item">
+              <button mat-button routerLink="/payments">
+                <mat-icon> attach_money</mat-icon>
+                Payments
+              </button>
+            </li>
+            <li>
+                <button mat-button routerLink="/announces">
+                  <mat-icon>add_alert</mat-icon>
+                  Announces</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div>
+    <button mat-button class="justify-content-end" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </div>
 </nav>
 
 <div class="row d-flex justify-content-start ml-5">
@@ -75,45 +83,3 @@
         </div>
     </div>
 </div>
-
-<!-- 
-    <div class="page-container">
-    <div class="content-container">
-      <div class="table-responsive">
-        <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Phone Number</th>
-              <th scope="col">Account Type</th>
-              <th scope="col">Start Date</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of items">
-              <td> {{item.payload.doc.data().displayName}} </td>
-              <td> {{item.payload.doc.data().email}} </td>
-              <td> {{item.payload.doc.data().phoneNumber}} </td>
-              <td> {{item.payload.doc.data().accountType}} </td>
-              <td> {{item.payload.doc.data().startDate}} </td>
-              <td class="text-center action-block">
-                <span
-                  class="mr-2 btn btn-outline-primary btn-sm"
-                  (click)="viewDetails(item)"
-                  >Edit</span
-                >
-                <span
-                  class="btn btn-outline-danger btn-sm"
-                  (click)="deleteStudent(student)"
-                  >Delete</span
-                >
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
- -->

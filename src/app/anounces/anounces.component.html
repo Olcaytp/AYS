@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between"
+  style="background: #3f51b5; color: white;">
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
+              <button mat-button routerLink="/admin">
+                <mat-icon>admin_panel_settings</mat-icon>
+                Admin Dashboard
+              </button>
+            </li>
+            <li class="nav-item" *ngIf="(user | async)?.accountType != 'admin'">
+              <button mat-button routerLink="/dashboard">
+                <mat-icon>dashboard</mat-icon>
+                Dashboard
+              </button>
+            </li>
+            <li class="nav-item">
+              <button mat-button routerLink="/payments">
+                <mat-icon> attach_money</mat-icon>
+                Payments
+              </button>
+            </li>
+            <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
+              <button mat-button routerLink="/user-list">
+                <mat-icon>list</mat-icon>
+                Users
+              </button>
+            </li>
+            <li>
+              <button mat-button routerLink="/announces">
+                <mat-icon>add_alert</mat-icon>
+                Announces
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div>
+    <button mat-button class="justify-content-end" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </div>
+</nav>
+
+<div class="page-container ml-5 mt-5 col-10">
+  <div class="content-container">
+    <div class="table-responsive">
+      <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+            <th></th>
+          </tr>
+        <tbody>
+          <tr *ngFor="let anounce of anounces; let i = index" [class.active]="i == currentIndex"
+            (click)="setActiveAnounce(tutorial, i)">
+            <td>{{anounce.title}}</td>
+            <td>{{anounce.description}}</td>
+            <td class="text-center action-block">
+              <span class="btn btn-outline-danger btn-sm ml-2" (click)="viewDetails(item)">
+                Edit
+              </span>
+              <span class="btn btn-outline-danger btn-sm ml-2" (click)="deleteuser(item)">
+                Delete
+              </span>
+            </td>
+          </tr>
+        </tbody>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>

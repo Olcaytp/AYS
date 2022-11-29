@@ -1,46 +1,41 @@
 import { Component, OnInit } from '@angular/core';
+
+import { AnounceService } from '../services/anounce.service';
+import Anounce from '../models/anounce';
+import { map, Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { FirebaseService } from '../services/firebase.service';
-import {
-  addDoc,
-  Firestore,
-  collection,
-  getDocs,
-  doc,
-  updateDoc,
-  deleteDoc
-} from '@angular/fire/firestore'
-
-
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  selector: 'app-anounces',
+  templateUrl: './anounces.component.html',
+  styleUrls: ['./anounces.component.css']
 })
-export class UserListComponent implements OnInit {
+export class AnouncesComponent implements OnInit {
 
+  anounces?: Anounce[];
+  currentAnounce?: Anounce;
+  currentIndex = -1;
+  title = '';
+  user: Observable<any>;
   searchValue: string = "";
   items: Array<any>;
   name_filtered_items: Array<any>;
   email_filtered_items: Array<any>;
-
-  user: Observable<any>;              // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
-
+  
   constructor(
-    private afAuth: AngularFireAuth,
+    private AnounceService: AnounceService,
     public firebaseService: FirebaseService,
+    private firestore: AngularFirestore,
+    private afAuth: AngularFireAuth,
     private router: Router,
-    private firestore: AngularFirestore
-  ) {
-    this.user = null;
-   }
+    ) {
+      this.user = null;
+     }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getData();
     const dataSource = this.items;
     this.afAuth.authState.subscribe(user => {               // grab the user object from Firebase Authorization
@@ -49,6 +44,7 @@ export class UserListComponent implements OnInit {
           this.user = this.firestore.collection('users').doc(user.uid).valueChanges(); // get the user's doc in Cloud Firestore
       }
   });
+    this.retrieveTutorials();
   }
 
   getData(){
@@ -61,34 +57,27 @@ export class UserListComponent implements OnInit {
     })
   }
 
-  deleteuser(item){
-    this.firebaseService.deleteUser(item.payload.doc.id);
-  };
-
-  viewDetails(item){
-    this.router.navigate(['/details/' + item.payload.doc.id]);
-    console.log("item.payload.doc.id"); //  same as edituser.t=> this.item.id:
-    console.log(item.payload.doc.id);
-    console.log(item.payload.doc.data());
-    console.log(item.payload.doc.data().displayName);
-    console.log(item.payload.doc);
+  refreshList(): void {
+    this.currentAnounce = undefined;
+    this.currentIndex = -1;
+    this.retrieveTutorials();
   }
 
-  capitalizeFirstLetter(value){
-    return value.charAt(0).toUpperCase() + value.slice(1);
-  }
-
-  combineLists(a, b){
-    let result = [];
-
-    a.filter(x => {
-      return b.filter(x2 =>{
-        if(x2.payload.doc.id == x.payload.doc.id){
-          result.push(x2);
-        }
-      });
+  retrieveTutorials(): void {
+    this.AnounceService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.anounces = data;
     });
-    return result;
+  }
+
+  setActiveAnounce(anounce: Anounce, index: number): void {
+    this.currentAnounce = anounce;
+    this.currentIndex = index;
   }
 
   logout(): void {

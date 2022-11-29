@@ -6,15 +6,9 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <button mat-button routerLink="/admin">
+              <button mat-button routerLink="/admin" >
                 <mat-icon>admin_panel_settings</mat-icon>
                 Admin Dashboard
-              </button>
-            </li>
-            <li class="nav-item">
-              <button mat-button routerLink="/dashboard">
-                <mat-icon>dashboard</mat-icon>
-                Dashboard
               </button>
             </li>
             <li class="nav-item">
@@ -24,13 +18,15 @@
               </button>
             </li>
             <li class="nav-item">
-              <button mat-button [matMenuTriggerFor]="menu">Users</button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item routerLink="/new-user">
-                  <mat-icon>account_circle</mat-icon>
-                  Add User
+                <button mat-button routerLink="/user-list">
+                    <mat-icon>list</mat-icon>
+                    Users
                 </button>
-              </mat-menu>
+            </li>
+            <li>
+                <button mat-button routerLink="/announces">
+                  <mat-icon>add_alert</mat-icon>
+                  Anounces</button>
             </li>
           </ul>
         </div>
@@ -49,17 +45,16 @@
   <div class="col-4 mt-1">
       <div class="list-group mt-2" id="list-tab" role="tablist">
           <div class="content-container">
-
               <button mat-raised-button color="primary">
                 <mat-icon>subject</mat-icon>
-                  <span>Kullanıcı Listeleme Sayfası</span>
+                  <span>User List</span>
               </button>
           </div>
       </div>
   </div>
 </div>
 
-<div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin">
+<div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin" class="ml-5">
   hello admin!
   <br>
   this is a simple test for admin status. a more rigorous test is to edit the auth.guard.ts file :)
@@ -87,16 +82,12 @@
               <td> {{item.payload.doc.data().accountType}} </td>
               <td> {{item.payload.doc.data().startDate}} </td>
               <td class="text-center action-block">
-                <span>
-                  <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
-                    <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
-                  </button>
+                <span class="btn btn-outline-danger btn-sm ml-2" (click)="viewDetails(item)">
+                  Edit
                 </span>
-                <span
-                  class="btn btn-outline-danger btn-sm"
-                  (click)="deleteuser(item)"
-                  >Delete</span
-                >
+                <span class="btn btn-outline-danger btn-sm ml-2" (click)="deleteuser(item)">
+                  Delete
+                </span>
               </td>
             </tr>
           </tbody>

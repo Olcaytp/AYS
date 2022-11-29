@@ -70,6 +70,7 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AnouncesComponent } from './anounces/anounces.component';
 
 
 
@@ -87,7 +88,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NewUserComponent,
     UserListComponent,
     PaymentsComponent,
-    EditUserComponent
+    EditUserComponent,
+    AnouncesComponent
   ],
   imports: [
     BrowserModule,

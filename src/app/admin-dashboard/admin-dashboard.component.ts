@@ -4,6 +4,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import Anounce from '../models/anounce';
+import { AnounceService } from '../services/anounce.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -12,6 +14,8 @@ import { Observable } from 'rxjs';
 })
 export class AdminDashboardComponent implements OnInit {
 
+    anounce: Anounce = new Anounce();
+
   user: Observable<any>; 
   // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
 
@@ -19,23 +23,11 @@ export class AdminDashboardComponent implements OnInit {
         private afAuth: AngularFireAuth,
         private firestore: AngularFirestore,
         private router: Router,
+        private AnounceService: AnounceService
         ) {
         this.user = null;
 
     }
-
-    AnounceForm = new FormGroup({
-        title: new FormControl(''),
-        content: new FormControl(''),
-      });
-
-      preview: string = '';
- 
-    save() {
-        this.preview = JSON.stringify(this.AnounceForm.value);
-
-        this.AnounceForm.reset();
-     }
 
 
     ngOnInit(): void {
@@ -46,6 +38,13 @@ export class AdminDashboardComponent implements OnInit {
             }
         });
     }
+
+    saveAnouncement(): void {
+        this.AnounceService.create(this.anounce).then(() => {
+          console.log('Created new item successfully!');
+          this.router.navigate(['/announces']);
+        });
+      }
 
     logout(): void {
         this.afAuth.signOut()

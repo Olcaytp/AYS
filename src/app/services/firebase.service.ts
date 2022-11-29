@@ -54,11 +54,4 @@ export class FirebaseService {
       date: value.date,
     });
   }
-
-  createAnouncement(value){
-    return this.db.collection('anons').add({
-      title: value.name,
-      content: value.content,
-    });
-  }
 }
