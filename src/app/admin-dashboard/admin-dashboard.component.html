@@ -54,6 +54,7 @@
                     <mat-icon>home</mat-icon>
                     <span>Admin Dashboard Page</span>
                 </button>
+            
                 <br>
                 <div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin">
                     hello admin!
@@ -96,6 +97,42 @@
             </table>
         </div>
     </div>
+</div>
+
+
+<div class="col-8 mt-5">
+    <button mat-raised-button color="primary" class="ml-5" >
+        <mat-icon>add_alert</mat-icon>
+          <span>Duyuru Oluştur</span>
+      </button>
+  <div class="row d-flex">
+    <div class="col col-md-8" style="max-height: 100vh">
+      <form [formGroup]="AnounceForm" (ngSubmit)="save()">
+        <div class="mb-3">
+            <label for="title" class="form-label">Başlık</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              formControlName="title"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="content" class="form-label">İçerik</label>
+            <input
+              type="text"
+              class="form-control"
+              id="content"
+              formControlName="content"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+    <div class="col col-md-4">
+      <div style="position: fixed">{{ preview }}</div>
+    </div>
+  </div>
 </div>
 
 

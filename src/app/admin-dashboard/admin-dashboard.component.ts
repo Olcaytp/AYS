@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.css']
+  styleUrls: ['./admin-dashboard.component.css'],
 })
 export class AdminDashboardComponent implements OnInit {
 
@@ -22,7 +21,22 @@ export class AdminDashboardComponent implements OnInit {
         private router: Router,
         ) {
         this.user = null;
+
     }
+
+    AnounceForm = new FormGroup({
+        title: new FormControl(''),
+        content: new FormControl(''),
+      });
+
+      preview: string = '';
+ 
+    save() {
+        this.preview = JSON.stringify(this.AnounceForm.value);
+
+        this.AnounceForm.reset();
+     }
+
 
     ngOnInit(): void {
         this.afAuth.authState.subscribe(user => {               // grab the user object from Firebase Authorization

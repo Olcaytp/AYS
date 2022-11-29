@@ -44,9 +44,9 @@ export class AuthService {
         return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
             .then((result) => {
                 let emailLower = user.email.toLowerCase();
-
-                this.afs.doc('/users/' + result.user.uid)                        // on a successful signup, create a document in 'users' collection with the new user's info
-                    .set({
+                
+// on a successful signup, create a document in 'users' collection with the new user's info
+                this.afs.doc('/users/' + result.user.uid)                    .set({
                         accountType: 'DaireSakini',
                         displayName: user.displayName,
                         displayName_lower: user.displayName.toLowerCase(),

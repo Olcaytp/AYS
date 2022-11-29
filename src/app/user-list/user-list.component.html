@@ -45,6 +45,20 @@
   </div>
 </nav>
 
+<div class="row d-flex justify-content-start ml-5">
+  <div class="col-4 mt-1">
+      <div class="list-group mt-2" id="list-tab" role="tablist">
+          <div class="content-container">
+
+              <button mat-raised-button color="primary">
+                <mat-icon>subject</mat-icon>
+                  <span>Kullanıcı Listeleme Sayfası</span>
+              </button>
+          </div>
+      </div>
+  </div>
+</div>
+
 <div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin">
   hello admin!
   <br>

@@ -69,6 +69,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { NewUserComponent } from './new-user/new-user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -143,6 +144,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
+        NgbModule,
 
   ],
   schemas: [
