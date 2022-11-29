@@ -71,6 +71,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnouncesComponent } from './anounces/anounces.component';
+import { AnnounceDetailsComponent } from './announce-details/announce-details.component';
 
 
 
@@ -89,7 +90,8 @@ import { AnouncesComponent } from './anounces/anounces.component';
     UserListComponent,
     PaymentsComponent,
     EditUserComponent,
-    AnouncesComponent
+    AnouncesComponent,
+    AnnounceDetailsComponent
   ],
   imports: [
     BrowserModule,
