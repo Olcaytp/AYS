@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
               <button mat-button routerLink="/admin">
                 <mat-icon>admin_panel_settings</mat-icon>
                 Admin Dashboard
@@ -23,7 +23,7 @@
                 Payments
               </button>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
                 <button mat-button routerLink="/user-list">
                     <mat-icon>list</mat-icon>
                     Users
@@ -32,7 +32,7 @@
             <li>
                 <button mat-button routerLink="/announces">
                   <mat-icon>add_alert</mat-icon>
-                  Anounces</button>
+                  Announces</button>
             </li>
           </ul>
         </div>

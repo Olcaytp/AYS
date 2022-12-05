@@ -63,15 +63,15 @@ import { environment } from '../environments/environment';
 import { SignupComponent } from './signup/signup.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnouncesComponent } from './anounces/anounces.component';
-import { AnnounceDetailsComponent } from './announce-details/announce-details.component';
+import { ComplaintsComponent } from './complaints/complaints.component';
+import { ComplaintsDetailsComponent } from './complaints-details/complaints-details.component';
+import { AnounceDetailsComponent } from './anounce-details/anounce-details.component';
 
 
 
@@ -81,17 +81,18 @@ import { AnnounceDetailsComponent } from './announce-details/announce-details.co
     AppComponent,
     AdminDashboardComponent,
     DashboardComponent,
-    ForgotPasswordComponent,
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    VerifyEmailComponent,
     NewUserComponent,
     UserListComponent,
     PaymentsComponent,
     EditUserComponent,
     AnouncesComponent,
-    AnnounceDetailsComponent
+    AnounceDetailsComponent,
+    ComplaintsComponent,
+    ComplaintsDetailsComponent,
+    AnounceDetailsComponent
   ],
   imports: [
     BrowserModule,

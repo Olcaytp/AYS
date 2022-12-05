@@ -1,0 +1,42 @@
+<div *ngIf="currentAnounce" class="edit-form">
+  <h4>Anounce</h4>
+  <form>
+    <div #editform class="form-group">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        [(ngModel)]="currentAnounce.title"
+        name="title"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        [(ngModel)]="currentAnounce.description"
+        name="description"
+      />
+    </div>
+
+    <div class="form-group">
+      <label><strong>Status:</strong></label>
+      {{ currentAnounce.published ? "Published" : "Pending" }}
+    </div>
+  </form>
+  <button type="submit" class="btn btn-outline-danger btn-sm ml-2" (click)="updateAnounce()">
+    Update
+  </button>
+  <span class="btn btn-outline-danger btn-sm ml-2" (click)="deleteAnounce()">
+    Delete
+  </span>
+  <p>{{ message }}</p>
+</div>
+
+<div *ngIf="!currentAnounce">
+  <br />
+  <p>Cannot access this Anounce...</p>
+</div>

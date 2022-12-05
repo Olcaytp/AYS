@@ -47,11 +47,9 @@ export class AuthService {
                 
 // on a successful signup, create a document in 'users' collection with the new user's info
                 this.afs.doc('/users/' + result.user.uid)                    .set({
-                        accountType: 'DaireSakini',
+                        accountType: 'Daire Sakini',
                         displayName: user.displayName,
-                        displayName_lower: user.displayName.toLowerCase(),
                         email: user.email,
-                        email_lower: emailLower,
                         phoneNumber: user.phoneNumber,
                         uid: result.user.uid,
                         startDate: user.startDate,

@@ -6,9 +6,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { VerifyEmailComponent } from './verify-email/verify-email.component';
+// import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+// import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 import { AuthGuard } from './services/auth.guard';
@@ -18,6 +18,7 @@ import { PaymentsComponent } from './payments/payments.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditUserResolver } from './edit-user/edit-user.resolver';
 import { AnouncesComponent } from './anounces/anounces.component';
+import { ComplaintsComponent } from './complaints/complaints.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -25,12 +26,11 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'admin/payments', component: PaymentsComponent },
   { path: 'payments', component: PaymentsComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'verify-email', component: VerifyEmailComponent },
   { path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
   { path: 'announces', component: AnouncesComponent},
+  { path: 'complaints', component: ComplaintsComponent},
   { path: 'details/:id', component: EditUserComponent, resolve:{data : EditUserResolver}, canActivate: [AuthGuard] },
   { path: '**', component: DashboardComponent },                       // catch-all in case no other path matched
 ];

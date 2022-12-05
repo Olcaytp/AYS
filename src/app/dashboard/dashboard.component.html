@@ -28,6 +28,11 @@
                   <mat-icon>add_alert</mat-icon>
                   Announces</button>
             </li>
+            <li>
+              <button mat-button routerLink="/complaints">
+                <mat-icon>add_alert</mat-icon>
+                Complaints</button>
+          </li>
           </ul>
         </div>
       </div>
@@ -82,4 +87,40 @@
             </table>
         </div>
     </div>
+</div>
+
+<div class="col-8 mt-5">
+  <button mat-raised-button color="primary" class="ml-3" >
+      <mat-icon>add_alert</mat-icon>
+        <span>Şikayet Oluştur</span>
+    </button>
+
+    <div class="submit-form ml-3">
+      <div>
+        <div #complaintform class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            required
+            [(ngModel)]="complaint.title"
+            name="title"
+          />
+        </div>
+    
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            class="form-control"
+            id="description"
+            required
+            [(ngModel)]="complaint.description"
+            name="description"
+          />
+        </div>
+    
+        <button (click)="saveComplaint()" class="btn btn-success">Submit</button>
+      </div>
+</div>
 </div>

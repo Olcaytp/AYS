@@ -5,10 +5,16 @@
       <div class="container-fluid">
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <button mat-button routerLink="/admin" >
+            <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
+              <button mat-button routerLink="/admin">
                 <mat-icon>admin_panel_settings</mat-icon>
                 Admin Dashboard
+              </button>
+            </li>
+            <li class="nav-item" *ngIf="(user | async)?.accountType != 'admin'">
+              <button mat-button routerLink="/dashboard">
+                <mat-icon>dashboard</mat-icon>
+                Dashboard
               </button>
             </li>
             <li class="nav-item">
@@ -26,7 +32,14 @@
             <li>
                 <button mat-button routerLink="/announces">
                   <mat-icon>add_alert</mat-icon>
-                  Anounces</button>
+                  Anounces
+                </button>
+            </li>
+            <li>
+                <button mat-button routerLink="/complaints">
+                  <mat-icon>add_alert</mat-icon>
+                  Complaints
+                </button>
             </li>
           </ul>
         </div>
@@ -54,13 +67,8 @@
   </div>
 </div>
 
-<div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin" class="ml-5">
-  hello admin!
-  <br>
-  this is a simple test for admin status. a more rigorous test is to edit the auth.guard.ts file :)
-
-
-  <div class="page-container">
+<div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin" >
+  <div>
     <div class="content-container">
       <div class="table-responsive">
         <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">

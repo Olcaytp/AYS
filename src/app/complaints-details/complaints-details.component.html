@@ -1,0 +1,42 @@
+<div *ngIf="currentComplaint" class="edit-form">
+    <h4>Complaint</h4>
+    <form>
+      <div #editform class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentComplaint.title"
+          name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentComplaint.description"
+          name="description"
+        />
+      </div>
+      <div class="form-group">
+        <label><strong>Status:</strong></label>
+        {{ currentComplaint.published ? "Published" : "Pending" }}
+      </div>
+    </form>
+    <span class="btn btn-outline-danger btn-sm ml-2" (click)="updateComplaint()">
+      Update
+    </span>
+    <span class="btn btn-outline-danger btn-sm ml-2" (click)="deleteComplaint()">
+      Delete
+    </span>
+    <p>{{ message }}</p>
+  </div>
+  
+  <div *ngIf="!currentComplaint">
+    <br />
+    <p>Cannot access this Complaint...</p>
+  </div>
+  

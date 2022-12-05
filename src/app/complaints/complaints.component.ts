@@ -6,19 +6,19 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FirebaseService } from '../services/firebase.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
-import Anounce from '../models/anounce';
-import { AnounceService } from '../services/anounce.service';
+import Complaint from '../models/complaint';
+import { ComplaintService } from '../services/complaint.service';
 
 @Component({
-  selector: 'app-anounces',
-  templateUrl: './anounces.component.html',
-  styleUrls: ['./anounces.component.css']
+  selector: 'app-complaints',
+  templateUrl: './complaints.component.html',
+  styleUrls: ['./complaints.component.css']
 })
-export class AnouncesComponent implements OnInit {
+export class ComplaintsComponent implements OnInit {
 
-  anounces?: Anounce[];
+  complaints?: Complaint[];
   currentIndex = -1;
-  currentAnounce?: Anounce;
+  currentComplaint?: Complaint;
   title = '';
   user: Observable<any>;
   searchValue: string = "";
@@ -27,7 +27,7 @@ export class AnouncesComponent implements OnInit {
   email_filtered_items: Array<any>;
   
   constructor(
-    private AnounceService: AnounceService,
+    private ComplaintService: ComplaintService,
     public firebaseService: FirebaseService,
     private firestore: AngularFirestore,
     private afAuth: AngularFireAuth,
@@ -45,7 +45,7 @@ export class AnouncesComponent implements OnInit {
           this.user = this.firestore.collection('users').doc(user.uid).valueChanges(); // get the user's doc in Cloud Firestore
       }
   });
-    this.retrieveAnounces();
+    this.retrieveComplaints();
   }
 
   getData(){
@@ -59,28 +59,28 @@ export class AnouncesComponent implements OnInit {
   }
 
   refreshList(): void {
-    this.currentAnounce = undefined;
+    this.currentComplaint = undefined;
     this.currentIndex = -1;
-    this.retrieveAnounces();
+    this.retrieveComplaints();
   }
 
-  retrieveAnounces(): void {
-    console.log('retrieveAnounces() is called');
-    this.AnounceService.getAll().snapshotChanges().pipe(
+  retrieveComplaints(): void {
+    console.log('retrieveComplaints() is called');
+    this.ComplaintService.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })
         )
       )
     ).subscribe(data => {
-      this.anounces = data;
+      this.complaints = data;
     });
   }
 
-  setActiveAnounce(anounce: Anounce, index: number): void {
-    this.currentAnounce = anounce;
+  setActiveComplaint(complaint: Complaint, index: number): void {
+    this.currentComplaint = complaint;
     this.currentIndex = index;
-    console.log('setActiveAnounce() is called' + this.currentAnounce.title);
+    console.log('setActiveComplaint() is called' + this.currentComplaint.title);
   }
 
   logout(): void {

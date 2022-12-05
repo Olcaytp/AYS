@@ -1,4 +1,4 @@
-export default class Anounce {
+export default class Complaint {
   id?: string;
   title?: string;
   description?: string;

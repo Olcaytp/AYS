@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import Complaint from '../models/complaint';
+import { ComplaintService } from '../services/complaint.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,12 +13,14 @@ import { Observable } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
 
-  user: Observable<any>;              // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
+    complaint: Complaint = new Complaint();
+    user: Observable<any>;              // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
 
     constructor(
         private afAuth: AngularFireAuth,
         private firestore: AngularFirestore,
-        private router: Router
+        private router: Router,
+        public ComplaintService: ComplaintService
         ) 
         {
         this.user = null;
@@ -27,13 +31,19 @@ export class DashboardComponent implements OnInit {
             console.log('Dashboard: user', user);
 
             if (user) {
-                let emailLower = user.email.toLowerCase();
                 this.user = this.firestore.collection('users').doc(user.uid).valueChanges();
                 console.log('user is logged in');
                 console.log("this is user.uid = " + user.uid);
             }
         });
     }
+
+    saveComplaint(): void {
+        this.ComplaintService.create(this.complaint).then(() => {
+          console.log('Created new item successfully!');
+          this.router.navigate(['/complaints']);
+        });
+      }
 
     logout(): void {
         this.afAuth.signOut()

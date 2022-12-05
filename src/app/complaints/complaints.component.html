@@ -61,7 +61,7 @@
             <div class="content-container">
                 <button mat-raised-button color="primary" style="cursor: default !important;">
                     <mat-icon>home</mat-icon>
-                    <span>Anounce Lists</span>
+                    <span>Complaints Lists</span>
                 </button>
             </div>
     </div>
@@ -78,11 +78,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let anounce of anounces; let i = index" [class.active]="i == currentIndex">
-                <td>{{anounce.title}}</td>
-                <td>{{anounce.description}}</td>
+              <tr *ngFor="let complaint of complaints; let i = index" [class.active]="i == currentIndex">
+                <td>{{complaint.title}}</td>
+                <td>{{complaint.description}}</td>
                 <td class="text-center action-block">
-                  <span class="btn btn-outline-danger btn-sm ml-2" [class.active]="i == currentIndex" (click)="setActiveAnounce(anounce, i)">
+                  <span class="btn btn-outline-danger btn-sm ml-2" [class.active]="i == currentIndex" (click)="setActiveComplaint(complaint, i)">
                     Edit
                   </span>
                 </td>
@@ -99,18 +99,18 @@
       <div class="content-container">
           <button mat-raised-button color="primary" style="cursor: default !important;">
               <mat-icon>list</mat-icon>
-              <span>Anounce Details</span>
+              <span>Complaint Details</span>
           </button>
       </div>
 </div>
-    <div *ngIf="currentAnounce">
-      <app-anounce-details
-        (refreshList)="refreshList()"
-        [anounce]="currentAnounce"
-      ></app-anounce-details>
-    </div>
+<div *ngIf="currentComplaint">
+  <app-complaints-details
+    (refreshList)="refreshList()"
+    [complaint]="currentComplaint"
+  ></app-complaints-details>
+</div>
   
-    <div *ngIf="!currentAnounce">
+    <div *ngIf="!currentComplaint">
       <br />
       <p>Please click on a Edit</p>
     </div>
