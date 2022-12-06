@@ -53,6 +53,7 @@ export class AuthService {
                         phoneNumber: user.phoneNumber,
                         uid: result.user.uid,
                         startDate: user.startDate,
+                        flatNumber: user.flatNumber,
                     });
 
                     result.user.sendEmailVerification();                    // immediately send the user a verification email

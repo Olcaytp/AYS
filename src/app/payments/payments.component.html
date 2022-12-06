@@ -34,6 +34,11 @@
                   <mat-icon>add_alert</mat-icon>
                   Announces</button>
             </li>
+            <li>
+              <button mat-button routerLink="/complaints">
+                <mat-icon>add_alert</mat-icon>
+                Complaints</button>
+          </li>
           </ul>
         </div>
       </div>
@@ -46,4 +51,105 @@
     </button>
   </div>
 </nav>
-<p>payments works!</p>
+
+<div class="row" *ngIf="(user | async)?.accountType == 'admin'; else userBoard" >
+  <div class="col-md-7">
+    <div class="col-3 ml-5 mt-5">
+      <div class="content-container">
+          <button mat-raised-button color="primary" style="cursor: default !important;">
+              <mat-icon>attach_money</mat-icon>
+              <span>Payment List</span>
+          </button>
+      </div>
+    </div>
+
+    <div class="page-container ml-5 mt-5 col-10">
+        <div class="table-responsive">
+          <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Payment Date</th>
+                <th scope="col">Flat Number</th>
+                <th scope="col">Payment Count</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let payment of payments; let i = index" [class.active]="i == currentIndex">
+                <td>{{payment.title}}</td>
+                <td>{{payment.userName}}</td>
+                <td>{{payment.paymentDate | date: 'longDate'}}</td>
+                <td>{{payment.flatNumber}}</td>
+                <td>{{payment.paymentCount | currency: '₺'}}</td>
+                <td class="text-center action-block">
+                  <span class="btn btn-outline-danger btn-sm ml-2" [class.active]="i == currentIndex" (click)="setActivePayment(payment, i)">
+                    Edit
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class=" ml-0 mt-5">
+          <button mat-raised-button color="primary" style="cursor: default !important;">
+              <mat-icon>list</mat-icon>
+              <span>Payment Details</span>
+          </button>
+  </div>
+    <div *ngIf="currentPayment">
+      <app-payment-details
+        (refreshList)="refreshList()"
+        [payment]="currentPayment"
+      ></app-payment-details>
+    </div>
+  
+    <div *ngIf="!currentPayment">
+      <br />
+      <p>Please click on a Edit</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #userBoard>
+  <div class="col-md-7">
+    <div class="col-3 ml-5 mt-5">
+      <div class="content-container">
+          <button mat-raised-button color="primary" style="cursor: default !important;">
+              <mat-icon>attach_money</mat-icon>
+              <span>Payment List</span>
+          </button>
+      </div>
+    </div>
+
+    <div class="page-container ml-5 mt-5 col-10">
+        <div class="table-responsive">
+          <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Payment Date</th>
+                <th scope="col">Flat Number</th>
+                <th scope="col">Payment Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let payment of payments; let i = index" [class.active]="i == currentIndex">
+                <td>{{payment.title}}</td>
+                <td>{{payment.userName}}</td>
+                <td>{{payment.paymentDate | date: 'longDate'}}</td>
+                <td>{{payment.flatNumber}}</td>
+                <td>{{payment.paymentCount | currency: '₺'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+</ng-template>

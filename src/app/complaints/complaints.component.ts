@@ -21,7 +21,6 @@ export class ComplaintsComponent implements OnInit {
   currentComplaint?: Complaint;
   title = '';
   user: Observable<any>;
-  searchValue: string = "";
   items: Array<any>;
   name_filtered_items: Array<any>;
   email_filtered_items: Array<any>;

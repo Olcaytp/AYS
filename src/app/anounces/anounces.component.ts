@@ -21,7 +21,6 @@ export class AnouncesComponent implements OnInit {
   currentAnounce?: Anounce;
   title = '';
   user: Observable<any>;
-  searchValue: string = "";
   items: Array<any>;
   name_filtered_items: Array<any>;
   email_filtered_items: Array<any>;

@@ -50,8 +50,7 @@
     <div class="col-4 mt-1">
         <div class="list-group mt-2" id="list-tab" role="tablist">
             <div class="content-container">
-
-                <button mat-raised-button color="primary">
+                <button mat-raised-button color="primary" style="cursor: default !important;">
                     <mat-icon>home</mat-icon>
                     <span>Dashboard Page</span>
                 </button>
@@ -61,7 +60,7 @@
     </div>
 </div>
 
-<div class="col-8 mt-5">
+<div class="col-8 m-5">
     <div class="content-container">
         <div class="table-responsive">
             <table *ngIf="(user | async)" id="example"
@@ -73,15 +72,17 @@
                         <th scope="col">Phone Number</th>
                         <th scope="col">Account Type</th>
                         <th scope="col">Start Date</th>
+                        <th scope="col">Flat Number</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr style="text-align: center;">
                         <td> {{ (user | async)?.displayName }} </td>
                         <td> {{ (user | async)?.email }} </td>
                         <td> {{ (user | async)?.phoneNumber }} </td>
                         <td> {{ (user | async)?.accountType }} </td>
                         <td> {{ (user | async)?.startDate }} </td>
+                        <td> {{ (user | async)?.flatNumber }} </td>
                     </tr>
                 </tbody>
             </table>
@@ -89,8 +90,8 @@
     </div>
 </div>
 
-<div class="col-8 mt-5">
-  <button mat-raised-button color="primary" class="ml-3" >
+<div class="col-8 m-5" style="border: 2px solid; border-radius: 50px; background-color: #d7f8fa;">
+  <button mat-raised-button color="primary" class="m-3" style="cursor: default !important;">
       <mat-icon>add_alert</mat-icon>
         <span>Şikayet Oluştur</span>
     </button>
@@ -120,7 +121,7 @@
           />
         </div>
     
-        <button (click)="saveComplaint()" class="btn btn-success">Submit</button>
+        <button (click)="saveComplaint()" class="btn btn-success m-3 ">Submit</button>
       </div>
 </div>
 </div>

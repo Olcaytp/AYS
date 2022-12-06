@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import Complaint from '../models/complaint';
 import { ComplaintService } from '../services/complaint.service';
 

@@ -1,0 +1,72 @@
+<div *ngIf="currentPayment" class="edit-form">
+    <form>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="currentPayment.title"
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="userName">User Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="userName"
+            [(ngModel)]="currentPayment.userName"
+            name="userName"
+          />
+        </div>
+
+        <div class="form-group">
+            <label for="paymentDate">Payment Date</label>
+            <input
+              type="date"
+              class="form-control"
+              id="paymentDate"
+              [(ngModel)]="currentPayment.paymentDate"
+              name="paymentDate"
+            />
+          </div>
+          <div class="form-group">
+            <label for="flatNumber">Flat Number</label>
+            <input
+              type="number"
+              class="form-control"
+              id="flatNumber"
+              [(ngModel)]="currentPayment.flatNumber"
+              name="flatNumber"
+            />
+          </div>
+          <div class="form-group">
+            <label for="paymentCount">Payment Count</label>
+            <input
+              type="number"
+              class="form-control"
+              id="paymentCount"
+              [(ngModel)]="currentPayment.paymentCount"
+              name="paymentCount"
+            />
+          </div>
+      <div class="form-group">
+        <label><strong>Status:</strong></label>
+        {{ currentPayment.published ? "Published" : "Pending" }}
+      </div>
+    </form>
+    <span class="btn btn-outline-danger btn-sm ml-2" (click)="updatePayment()">
+      Update
+    </span>
+    <span class="btn btn-outline-danger btn-sm ml-2" (click)="deletePayment()">
+      Delete
+    </span>
+    <p>{{ message }}</p>
+  </div>
+  
+  <div *ngIf="!currentPayment">
+    <br />
+    <p>Cannot access this Payment...</p>
+  </div>
+  

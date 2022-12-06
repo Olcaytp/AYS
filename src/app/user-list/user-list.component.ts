@@ -24,7 +24,6 @@ import {
 })
 export class UserListComponent implements OnInit {
 
-  searchValue: string = "";
   items: Array<any>;
   name_filtered_items: Array<any>;
   email_filtered_items: Array<any>;

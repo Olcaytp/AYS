@@ -1,8 +1,11 @@
+import { map, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+
+import Payment from '../models/payment';
+import { PaymentService } from '../services/payment.service';
 
 @Component({
   selector: 'app-payments',
@@ -11,13 +14,18 @@ import { Observable } from 'rxjs';
 })
 export class PaymentsComponent implements OnInit {
 
-  user: Observable<any>; 
-  // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
+  payments?: Payment[];
+  currentIndex = -1;
+  currentPayment?: Payment;
+  title = '';
+  user: Observable<any>;
+
 
   constructor(
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private PaymentService: PaymentService
     )  { }
 
     ngOnInit(): void {
@@ -27,6 +35,34 @@ export class PaymentsComponent implements OnInit {
               this.user = this.firestore.collection('users').doc(user.uid).valueChanges(); // get the user's doc in Cloud Firestore
           }
       });
+      console.log('ngOnInit() is called' + this.payments);
+      this.retrievePayments();
+  }
+
+  refreshList(): void {
+    console.log('refreshList() is called' + this.payments);
+    this.currentPayment = undefined;
+    this.currentIndex = -1;
+    this.retrievePayments();
+  }
+
+  retrievePayments(): void {
+    console.log('retrievePayments() is called');
+    this.PaymentService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.payments = data;
+    });
+  }
+
+  setActivePayment(payment: Payment, index: number): void {
+    this.currentPayment = payment;
+    this.currentIndex = index;
+    console.log('setActivePayments() is called' + this.currentPayment.title);
   }
 
   logout(): void {

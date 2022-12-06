@@ -54,7 +54,7 @@
   </div>
 </nav>
 
-<div class="list row">
+<div class="list row" *ngIf="(user | async)?.accountType == 'admin'; else userBoard">
   <div class="col-md-6">
 
     <div class="col-3 ml-5 mt-5">
@@ -116,3 +116,38 @@
     </div>
   </div>
 </div>
+
+<ng-template #userBoard>
+  <div class="col-md-8">
+
+    <div class="ml-5 mt-5">
+            <div class="content-container">
+                <button mat-raised-button color="primary" style="cursor: default !important;">
+                    <mat-icon>home</mat-icon>
+                    <span>Anounce Lists</span>
+                </button>
+            </div>
+    </div>
+
+    <div class="page-container ml-5 mt-5">
+      <div class="content-container">
+        <div class="table-responsive">
+          <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Content</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let anounce of anounces; let i = index" [class.active]="i == currentIndex">
+                <td>{{anounce.title}}</td>
+                <td>{{anounce.description}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

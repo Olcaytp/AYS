@@ -16,8 +16,6 @@ export class EditUserComponent implements OnInit {
 
   exampleForm: FormGroup;
   item: any;
-  ageValue: number = 0;
-  searchValue: string = "";
   items: Array<any>;
   name_filtered_items: Array<any>;
   email_filtered_items: Array<any>;
@@ -28,9 +26,6 @@ export class EditUserComponent implements OnInit {
    ],
    'surname': [
      { type: 'required', message: 'Surname is required.' }
-   ],
-   'age': [
-     { type: 'required', message: 'Age is required.' },
    ],
     'email': [
       { type: 'required', message: 'Email is required.' },
@@ -68,10 +63,10 @@ export class EditUserComponent implements OnInit {
         this.item.displayName = data.payload.data().displayName;
         this.item.email = data.payload.data().email;
         this.item.password = data.payload.data().password;
-        this.item.complaints = data.payload.data().complaints;
         this.item.accountType = data.payload.data().accountType;
         this.item.phoneNumber = data.payload.data().phoneNumber;
         this.item.startDate = data.payload.data().startDate;
+        this.item.flatNumber = data.payload.data().flatNumber;
 
         console.log("data: ", data.payload.data());
 
@@ -94,7 +89,7 @@ export class EditUserComponent implements OnInit {
       accountType: [this.item.accountType, Validators.required],
       phoneNumber: [this.item.phoneNumber, Validators.required],
       startDate: [this.item.startDate, Validators.required],
-      complaints: [this.item.complaints],
+      flatNumber: [this.item.flatNumber, Validators.required]
     });
   }
 

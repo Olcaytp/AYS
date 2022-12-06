@@ -54,16 +54,12 @@
   </div>
 </nav>
 
-<div class="row d-flex justify-content-start ml-5">
-  <div class="col-4 mt-1">
-      <div class="list-group mt-2" id="list-tab" role="tablist">
-          <div class="content-container">
-              <button mat-raised-button color="primary">
-                <mat-icon>subject</mat-icon>
-                  <span>User List</span>
-              </button>
-          </div>
-      </div>
+<div class="col-3 ml-5 mt-5">
+  <div class="content-container">
+      <button mat-raised-button color="primary" style="cursor: default !important;">
+          <mat-icon>subject</mat-icon>
+          <span>User List</span>
+      </button>
   </div>
 </div>
 
@@ -79,16 +75,18 @@
               <th scope="col">Phone Number</th>
               <th scope="col">Account Type</th>
               <th scope="col">Start Date</th>
+              <th scope="col">Flat Number</th>
               <th></th>
             </tr>
           </thead>
           <tbody >
-            <tr *ngFor="let item of items">
+            <tr *ngFor="let item of items" style="text-align: center;">
               <td> {{item.payload.doc.data().displayName}} </td>
               <td> {{item.payload.doc.data().email}} </td>
               <td> {{item.payload.doc.data().phoneNumber}} </td>
               <td> {{item.payload.doc.data().accountType}} </td>
-              <td> {{item.payload.doc.data().startDate}} </td>
+              <td> {{item.payload.doc.data().startDate  | date: 'longDate'}} </td>
+              <td> {{item.payload.doc.data().flatNumber}} </td>
               <td class="text-center action-block">
                 <span class="btn btn-outline-danger btn-sm ml-2" (click)="viewDetails(item)">
                   Edit

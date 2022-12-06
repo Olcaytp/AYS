@@ -30,12 +30,14 @@ export class SignupComponent implements OnInit {
             'email': new FormControl('', [Validators.required, Validators.email]),
             'password': new FormControl('', Validators.required),
             'phoneNumber': new FormControl('', Validators.required),
-            'confirmPassword': new FormControl('', Validators.required),
             'startDate': new FormControl('', Validators.required),
+            'flatNumber': new FormControl(''),
         });
     }
 
     signup() {
+        console.log(this.signupForm.value);
+        console.log(this.signupForm.valid);
         if (this.signupForm.invalid)                            // if there's an error in the form, don't submit it
             return;
 
@@ -45,6 +47,8 @@ export class SignupComponent implements OnInit {
                 this.router.navigate(['/dashboard']);
             else if (result.isValid == false)
                 this.firebaseErrorMessage = result.message;
+            
+                console.log('SignupComponent: signupUser: success' + result);
 
             this.isProgressVisible = false;                     // no matter what, when the auth service returns, we hide the progress indicator
         }).catch(() => {

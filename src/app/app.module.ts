@@ -1,7 +1,10 @@
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import {  NgModule ,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {  NgModule ,CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeTr from '@angular/common/locales/tr';
+registerLocaleData(localeTr, 'tr');
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -72,6 +75,7 @@ import { AnouncesComponent } from './anounces/anounces.component';
 import { ComplaintsComponent } from './complaints/complaints.component';
 import { ComplaintsDetailsComponent } from './complaints-details/complaints-details.component';
 import { AnounceDetailsComponent } from './anounce-details/anounce-details.component';
+import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 
 
 
@@ -92,7 +96,8 @@ import { AnounceDetailsComponent } from './anounce-details/anounce-details.compo
     AnounceDetailsComponent,
     ComplaintsComponent,
     ComplaintsDetailsComponent,
-    AnounceDetailsComponent
+    AnounceDetailsComponent,
+    PaymentDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -155,7 +160,9 @@ import { AnounceDetailsComponent } from './anounce-details/anounce-details.compo
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
-  providers: [],
+  providers: [{
+    provide: LOCALE_ID, useValue: 'tr-TR' // 'de' for Germany, 'fr' for France ...
+   }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
