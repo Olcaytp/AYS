@@ -24,9 +24,12 @@ import {
 })
 export class UserListComponent implements OnInit {
 
+
+  searchValue: string = "";
   items: Array<any>;
   name_filtered_items: Array<any>;
   email_filtered_items: Array<any>;
+  age_filtered_items: Array<any>;
 
   user: Observable<any>;              // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
 
@@ -56,6 +59,7 @@ export class UserListComponent implements OnInit {
       this.items = result;
       this.name_filtered_items = result;
       this.email_filtered_items = result;
+      this.age_filtered_items = result;
       console.log('UserListComponent: items', this.items.length);
     })
   }

@@ -1,10 +1,10 @@
-<div>
-    <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between" style="background: #3f51b5; color: white;">
+<nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between"
+    style="background: #3f51b5; color: white;">
     <div>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        </ul>
-      </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            </ul>
+        </div>
     </div>
     <div>
         <button mat-button class="justify-content-end" routerLink="/login">
@@ -12,78 +12,48 @@
             Login
         </button>
     </div>
-  </nav>
-    <div class="row d-flex justify-content-center">
-        <div class="col-4 mt-5">
-            <div class="list-group mt-5" id="list-tab" role="tablist">
-                <button mat-raised-button color="primary">
-                    <mat-icon>supervised_user_circle</mat-icon>
-                    <span>Signup Page</span>
-                </button>
-    
-                <mat-card class="form-card">
-                    <div class="row">
-                        <div class="col-6">
-                            <form [formGroup]="signupForm" (ngSubmit)="signup()">
-                                <p>
-                                    <mat-form-field appearance="outline">
-                                        <mat-label>Full Name</mat-label>
-                                        <input autocomplete="off" formControlName="displayName" type="text" matInput
-                                            placeholder="Display Name">
-                                    </mat-form-field>
-                                </p>
-                                <p>
-                                    <mat-form-field appearance="outline">
-                                        <mat-label>Email</mat-label>
-                                        <input formControlName="email" type="email" matInput placeholder="Email">
-                                    </mat-form-field>
-                                </p>
-                                <p>
-                                    <mat-form-field appearance="outline">
-                                        <mat-label>Telepfone Number</mat-label>
-                                        <input formControlName="phoneNumber" type="text" matInput placeholder="Phone Number">
-                                    </mat-form-field>
-                                </p>
-                            </form>
-                        </div>
-                        <div class="col-6">
-                        <form [formGroup]="signupForm" (ngSubmit)="signup()">
-                            <p>
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Başlangıç Tarihi</mat-label>
-                                    <input formControlName="startDate" type="date" matInput placeholder="Başlangıç Tarihi">
-                                </mat-form-field>
-                            </p>
-                            <p>
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Password</mat-label>
-                                    <input autocomplete="off" formControlName="password" type="password" matInput
-                                        placeholder="Password">
-                                </mat-form-field>
-                            </p>
-                            <p>
-                                <mat-form-field appearence="outline">
-                                    <mat-label>Flat Number</mat-label>
-                                    <input autocomplete="off" formControlName="flatNumber" type="number" matInput
-                                        placeholder="Flat Number">
-                                </mat-form-field> 
-                            </p>
-                            <div *ngIf="firebaseErrorMessage != ''" class="error-style">
-                                <span>{{ firebaseErrorMessage }}</span>
-                            </div>
-        
-                            <button mat-raised-button color="primary">Signup</button>
-                            <button mat-raised-button color="primary" class="ml-3" routerLink="/login" >Login</button>
-                        </form>
-                        </div>
-                    </div>
-                </mat-card>
-    
-                <div class="progressIndicator" [style.display]="isProgressVisible ? 'inline' : 'none' ">
-                    <mat-progress-spinner class=" example-margin" color="primary" mode="indeterminate">
-                    </mat-progress-spinner>
-                </div>
+</nav>
+
+<div class="m-5 d-flex justify-content-center">
+    <button mat-raised-button color="primary">
+        <mat-icon>supervised_user_circle</mat-icon>
+        <span>Signup Page</span>
+    </button>
+</div>
+
+<div class="form-container mat-elevation-z5">
+    <mat-card>
+        <form [formGroup]="signupForm" (ngSubmit)="signup()" style="text-align: center;">
+            <mat-form-field>
+                <input matInput formControlName="displayName" placeholder="User Name">
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="email" type="email" matInput placeholder="Email Address">
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="phoneNumber" type="number" matInput placeholder="Phone Number">
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="startDate" type="date" matInput placeholder="Başlangıç Tarihi">
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="password" type="password" matInput placeholder="Password">
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="flatNumber" type="number" matInput placeholder="Flat Number">
+            </mat-form-field>
+            <div *ngIf="firebaseErrorMessage != ''" class="error-style">
+                <span>{{ firebaseErrorMessage }}</span>
             </div>
-        </div>
-    </div>
+            <div class="center margin-top">
+                <button mat-raised-button color="primary">Signup</button>
+                <button mat-raised-button color="primary" class="ml-3" routerLink="/login">Login</button>
+            </div>
+        </form>
+    </mat-card>
+</div>
+
+<div class="progressIndicator" [style.display]="isProgressVisible ? 'inline' : 'none' ">
+    <mat-progress-spinner class=" example-margin" color="primary" mode="indeterminate">
+    </mat-progress-spinner>
 </div>

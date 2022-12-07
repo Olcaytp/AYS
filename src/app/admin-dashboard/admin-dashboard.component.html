@@ -11,7 +11,7 @@
                 Admin Dashboard
               </button>
             </li>
-            <li class="nav-item" *ngIf="(user | async)?.accountType != 'admin'">
+            <li class="nav-item">
               <button mat-button routerLink="/dashboard">
                 <mat-icon>dashboard</mat-icon>
                 Dashboard
@@ -55,7 +55,7 @@
 </nav>
 
 
-<div class="col-3 ml-5 mt-5">
+<div class="col-3 ml-5 mt-2">
   <div class="content-container">
       <button mat-raised-button color="primary" style="cursor: default !important;">
           <mat-icon>supervisor_account</mat-icon>
@@ -66,7 +66,7 @@
 
 
 
-<div class="col-8 mt-5 ml-5">
+<div class="col-8 mt-2 ml-5">
     <div class="content-container">
         <div class="table-responsive">
             <table *ngIf="(user | async)?.accountType == 'admin'" id="example"

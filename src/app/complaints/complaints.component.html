@@ -11,7 +11,7 @@
                 Admin Dashboard
               </button>
             </li>
-            <li class="nav-item" *ngIf="(user | async)?.accountType != 'admin'">
+            <li class="nav-item">
               <button mat-button routerLink="/dashboard">
                 <mat-icon>dashboard</mat-icon>
                 Dashboard
@@ -33,12 +33,6 @@
               <button mat-button routerLink="/announces">
                 <mat-icon>add_alert</mat-icon>
                 Announces
-              </button>
-            </li>
-            <li>
-              <button mat-button routerLink="/complaints">
-                <mat-icon>add_alert</mat-icon>
-                Complaints
               </button>
             </li>
           </ul>
