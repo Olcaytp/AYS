@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import Complaint from '../models/complaint';
 import { ComplaintService } from '../services/complaint.service';
@@ -19,10 +20,17 @@ export class ComplaintsDetailsComponent implements OnInit {
   };
   message = '';
 
-  constructor(private ComplaintService: ComplaintService) { }
+  constructor(
+    private ComplaintService: ComplaintService,
+    public translateService: TranslateService
+    ) { }
 
   ngOnInit(): void {
     this.message = '';
+  }
+
+  public changeLanguage(language: string): void {
+    this.translateService.use(language);
   }
 
   ngOnChanges(): void {

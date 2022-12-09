@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import Complaint from '../models/complaint';
 import { ComplaintService } from '../services/complaint.service';
@@ -20,7 +21,8 @@ export class DashboardComponent implements OnInit {
         private afAuth: AngularFireAuth,
         private firestore: AngularFirestore,
         private router: Router,
-        public ComplaintService: ComplaintService
+        public ComplaintService: ComplaintService,
+        public translateService: TranslateService
         ) 
         {
         this.user = null;
@@ -37,6 +39,10 @@ export class DashboardComponent implements OnInit {
             }
         });
     }
+
+    public changeLanguage(language: string): void {
+        this.translateService.use(language);
+      }
 
     saveComplaint(): void {
         this.ComplaintService.create(this.complaint).then(() => {

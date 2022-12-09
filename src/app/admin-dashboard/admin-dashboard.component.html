@@ -8,37 +8,37 @@
             <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
               <button mat-button routerLink="/admin">
                 <mat-icon>admin_panel_settings</mat-icon>
-                Admin Dashboard
+                {{ 'admin' | translate }}
               </button>
             </li>
             <li class="nav-item">
               <button mat-button routerLink="/dashboard">
                 <mat-icon>dashboard</mat-icon>
-                Dashboard
+                {{ 'dashboard' | translate }}
               </button>
             </li>
             <li class="nav-item">
               <button mat-button routerLink="/payments">
                 <mat-icon> attach_money</mat-icon>
-                Payments
+                {{ 'payments' | translate }}
               </button>
             </li>
             <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
               <button mat-button routerLink="/user-list">
                 <mat-icon>list</mat-icon>
-                Users
+                {{ 'userList' | translate }}
               </button>
             </li>
             <li>
               <button mat-button routerLink="/announces">
                 <mat-icon>add_alert</mat-icon>
-                Announces
+                {{ "anounces" | translate }}
               </button>
             </li>
             <li>
               <button mat-button routerLink="/complaints">
                 <mat-icon>add_alert</mat-icon>
-                Complaints
+                {{ 'complaints' | translate }}
               </button>
             </li>
           </ul>
@@ -46,12 +46,16 @@
       </div>
     </nav>
   </div>
-  <div>
+  <div class="d-flex flex-row">
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <button type="button" class="btn btn-sm btn-outline-warning" (click)="changeLanguage('en-US')" [class.active]="!translateService.currentLang || translateService.currentLang === 'en-US'">English</button>
+        <button type="button" class="btn btn-sm btn-outline-warning ml-5" (click)="changeLanguage('tr-TR')" [class.active]="translateService.currentLang === 'tr-TR'">Turkish</button>
+    </ul>
     <button mat-button class="justify-content-end" (click)="logout()">
       <mat-icon>logout</mat-icon>
-      Logout
+      {{ 'logout' | translate }}
     </button>
-  </div>
+</div>
 </nav>
 
 
@@ -59,7 +63,7 @@
   <div class="content-container">
       <button mat-raised-button color="primary" style="cursor: default !important;">
           <mat-icon>supervisor_account</mat-icon>
-          <span>Admin Dashboard Page</span>
+          <span>  {{ 'admin' | translate }} </span>
       </button>
   </div>
 </div>
@@ -71,14 +75,14 @@
         <div class="table-responsive">
             <table *ngIf="(user | async)?.accountType == 'admin'" id="example"
                 class="table table-striped table-bordered mt-3" style="width:100%">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone Number</th>
-                        <th scope="col">Account Type</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">Flat Number</th>
+                <thead >
+                    <tr style="text-align: center;" >
+                        <th  scope="col"> {{ "name" | translate }} </th>
+                        <th scope="col"> {{ "email" | translate }} </th>
+                        <th scope="col"> {{ "phone" | translate }} </th>
+                        <th scope="col"> {{ "account" | translate }} </th>
+                        <th scope="col"> {{ "start" | translate }} </th>
+                        <th scope="col"> {{ "flat" | translate }} </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -101,22 +105,22 @@
   <div class="col-8 mt-3 ml-5" style="border: 2px solid; border-radius: 50px;">
     <button mat-raised-button color="primary" class="m-3" style="cursor: default !important;">
       <mat-icon class="pl-0">add_alert</mat-icon>
-      <span style="padding-left: 2px;">Duyuru Oluştur</span>
+      <span style="padding-left: 2px;"> {{ "create-anounce" | translate }} </span>
     </button>
 
     <div class="submit-form ml-3">
       <div>
         <div #anounceform class="form-group">
-          <label for="title">Title</label>
+          <label for="title">{{"title" | translate}}</label>
           <input type="text" class="form-control" id="title" required [(ngModel)]="anounce.title" name="title" />
         </div>
 
         <div class="form-group">
-          <label for="description">Description</label>
+          <label for="description">{{"description" | translate}}</label>
           <input class="form-control" id="description" required [(ngModel)]="anounce.description" name="description" />
         </div>
 
-        <button (click)="saveAnouncement()" class="btn btn-success m-3">Submit</button>
+        <button (click)="saveAnouncement()" class="btn btn-success m-3">{{"submit" | translate}}</button>
       </div>
     </div>
   </div>
@@ -124,40 +128,39 @@
   <div class="col-8 mt-3 ml-5" style="border: 2px solid; border-radius: 50px;">
     <button mat-raised-button color="primary" class="m-3" style="cursor: default !important;">
       <mat-icon>attach_money</mat-icon>
-      <span>Ödeme Kaydı Oluştur</span>
+      <span> {{"create-payment" | translate}} </span>
     </button>
 
     <div class="submit-form ml-3">
       <div class="row">
         <div class="col-6">
           <div #paymentform class="form-group">
-            <label for="title">Title</label>
+            <label for="title">{{"title" | translate}}</label>
             <input type="text" class="form-control" id="title" required [(ngModel)]="payment.title" name="title" />
           </div>
           <div class="form-group">
-            <label for="userName">User Name</label>
+            <label for="userName"> {{"user-name" | translate}} </label>
             <input type="text" class="form-control" id="userName" required [(ngModel)]="payment.userName"
               name="userName" />
           </div>
         </div>
         <div class="col-6">
           <div class="form-group">
-            <label for="flatNumber">Flat Number</label>
+            <label for="flatNumber"> {{"flat" | translate}} </label>
             <input type="number" class="form-control" id="flatNumber" required [(ngModel)]="payment.flatNumber"
               name="flatNumber" />
           </div>
           <div class="form-group">
-            <label for="paymentCount">Payment Count</label>
+            <label for="paymentCount"> {{"payment-count" | translate}} </label>
             <input type="number" class="form-control" id="paymentCount" required [(ngModel)]="payment.paymentCount"
               name="paymentCount" />
           </div>
         </div>
       </div>
-
       <div class="row">
         <div class="col-6">
           <div class="form-group">
-            <label for="paymentDate">Payment Date</label>
+            <label for="paymentDate"> {{"payment-date" | translate}} </label>
             <input type="date" class="form-control" id="paymentDate" required [(ngModel)]="payment.paymentDate"
               name="paymentDate" />
           </div>
@@ -165,7 +168,7 @@
       </div>
 
       <div>
-        <button (click)="savePayment()" class="btn btn-success m-2">Submit</button>
+        <button (click)="savePayment()" class="btn btn-success m-2">{{"submit" | translate}}</button>
       </div>
     </div>
   </div>

@@ -44,11 +44,15 @@
       </div>
     </nav>
   </div>
-  <div>
-    <button mat-button class="justify-content-end" (click)="logout()">
-      <mat-icon>logout</mat-icon>
-      Logout
-    </button>
+    <div class="d-flex flex-row">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <button type="button" class="btn btn-sm btn-outline-warning" (click)="changeLanguage('en-US')" [class.active]="!translateService.currentLang || translateService.currentLang === 'en-US'">English</button>
+          <button type="button" class="btn btn-sm btn-outline-warning ml-5" (click)="changeLanguage('tr-TR')" [class.active]="translateService.currentLang === 'tr-TR'">Turkish</button>
+      </ul>
+      <button mat-button class="justify-content-end" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
   </div>
 </nav>
 

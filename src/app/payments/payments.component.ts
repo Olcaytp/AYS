@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import Payment from '../models/payment';
 import { PaymentService } from '../services/payment.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-payments',
@@ -25,7 +26,8 @@ export class PaymentsComponent implements OnInit {
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
     private router: Router,
-    private PaymentService: PaymentService
+    private PaymentService: PaymentService,
+    public translateService: TranslateService
     )  { }
 
     ngOnInit(): void {
@@ -37,6 +39,10 @@ export class PaymentsComponent implements OnInit {
       });
       console.log('ngOnInit() is called' + this.payments);
       this.retrievePayments();
+  }
+
+  public changeLanguage(language: string): void {
+    this.translateService.use(language);
   }
 
   refreshList(): void {

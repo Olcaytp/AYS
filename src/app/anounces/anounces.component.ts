@@ -8,6 +8,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 import Anounce from '../models/anounce';
 import { AnounceService } from '../services/anounce.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-anounces',
@@ -31,6 +32,7 @@ export class AnouncesComponent implements OnInit {
     private firestore: AngularFirestore,
     private afAuth: AngularFireAuth,
     private router: Router,
+    public translateService: TranslateService
     ) {
       this.user = null;
      }
@@ -45,6 +47,10 @@ export class AnouncesComponent implements OnInit {
       }
   });
     this.retrieveAnounces();
+  }
+
+  public changeLanguage(language: string): void {
+    this.translateService.use(language);
   }
 
   getData(){

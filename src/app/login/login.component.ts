@@ -3,6 +3,7 @@ import { user } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -16,7 +17,12 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     firebaseErrorMessage: string;
 
-    constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth) {
+    constructor(
+        private authService: AuthService, 
+        private router: Router, 
+        private afAuth: AngularFireAuth,
+        public translateService: TranslateService
+        ) {
 
         this.isProgressVisible = false;
 
@@ -33,6 +39,10 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/dashboard']);
         }
     }
+
+    public changeLanguage(language: string): void {
+        this.translateService.use(language);
+      }
 
     loginUser() {
         this.isProgressVisible = true;                          // show the progress indicator as we start the Firebase login process

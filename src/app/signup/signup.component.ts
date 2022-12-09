@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -15,10 +16,15 @@ export class SignupComponent implements OnInit {
   firebaseErrorMessage: string;
     signupForm: FormGroup;
 
-    constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth) {
+    constructor(
+        private authService: AuthService,
+        private router: Router,
+        private afAuth: AngularFireAuth,
+        public translateService: TranslateService
+        ) {
         this.isProgressVisible = false;
         this.firebaseErrorMessage = '';
-    }
+  }
 
     ngOnInit(): void {
         if (this.authService.userLoggedIn) {                       // if the user's logged in, navigate them to the dashboard (NOTE: don't use afAuth.currentUser -- it's never null)
@@ -34,6 +40,10 @@ export class SignupComponent implements OnInit {
             'flatNumber': new FormControl(''),
         });
     }
+
+    public changeLanguage(language: string): void {
+        this.translateService.use(language);
+      }
 
     signup() {
         console.log(this.signupForm.value);

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import Anounce from '../models/anounce';
 import { AnounceService } from '../services/anounce.service';
@@ -19,10 +20,17 @@ export class AnounceDetailsComponent implements OnInit {
   };
   message = '';
 
-  constructor(private AnounceService: AnounceService) { }
+  constructor(
+    private AnounceService: AnounceService,
+    public translateService: TranslateService
+    ) { }
 
   ngOnInit(): void {
     this.message = '';
+  }
+
+  public changeLanguage(language: string): void {
+    this.translateService.use(language);
   }
 
   ngOnChanges(): void {

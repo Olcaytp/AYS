@@ -8,31 +8,31 @@
             <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
               <button mat-button routerLink="/admin">
                 <mat-icon>admin_panel_settings</mat-icon>
-                Admin Dashboard
+                {{ 'admin' | translate }}
               </button>
             </li>
             <li class="nav-item">
               <button mat-button routerLink="/dashboard">
                 <mat-icon>dashboard</mat-icon>
-                Dashboard
+                {{ 'dashboard' | translate }}
               </button>
             </li>
             <li class="nav-item">
               <button mat-button routerLink="/payments">
                 <mat-icon> attach_money</mat-icon>
-                Payments
+                {{ 'payments' | translate }}
               </button>
             </li>
             <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
               <button mat-button routerLink="/user-list">
                 <mat-icon>list</mat-icon>
-                Users
+                 {{ 'userList' | translate }}
               </button>
             </li>
             <li>
               <button mat-button routerLink="/complaints">
                 <mat-icon>add_alert</mat-icon>
-                Complaints
+                {{ 'complaints' | translate }}
               </button>
             </li>
           </ul>
@@ -40,12 +40,16 @@
       </div>
     </nav>
   </div>
-  <div>
+  <div class="d-flex flex-row">
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <button type="button" class="btn btn-sm btn-outline-warning" (click)="changeLanguage('en-US')" [class.active]="!translateService.currentLang || translateService.currentLang === 'en-US'">English</button>
+        <button type="button" class="btn btn-sm btn-outline-warning ml-3" (click)="changeLanguage('tr-TR')" [class.active]="translateService.currentLang === 'tr-TR'">Turkish</button>
+    </ul>
     <button mat-button class="justify-content-end" (click)="logout()">
       <mat-icon>logout</mat-icon>
-      Logout
+      {{ 'logout' | translate }}
     </button>
-  </div>
+</div>
 </nav>
 
 <div class="list row" *ngIf="(user | async)?.accountType == 'admin'; else userBoard">
@@ -55,7 +59,7 @@
             <div class="content-container">
                 <button mat-raised-button color="primary" style="cursor: default !important;">
                     <mat-icon>home</mat-icon>
-                    <span>Anounce Lists</span>
+                    <span>{{"anouncelist" | translate}} </span>
                 </button>
             </div>
     </div>
@@ -66,8 +70,8 @@
           <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
             <thead>
               <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Content</th>
+                <th scope="col">{{"title" | translate}}</th>
+                <th scope="col">{{"description" | translate}}</th>
                 <th></th>
               </tr>
             </thead>
@@ -77,7 +81,7 @@
                 <td>{{anounce.description}}</td>
                 <td class="text-center action-block">
                   <span class="btn btn-outline-danger btn-sm ml-2" [class.active]="i == currentIndex" (click)="setActiveAnounce(anounce, i)">
-                    Edit
+                    {{"edit" | translate}}
                   </span>
                 </td>
               </tr>
@@ -93,7 +97,7 @@
       <div class="content-container">
           <button mat-raised-button color="primary" style="cursor: default !important;">
               <mat-icon>list</mat-icon>
-              <span>Anounce Details</span>
+              <span>{{"anouncedetails" | translate}} </span>
           </button>
       </div>
 </div>
@@ -106,7 +110,7 @@
   
     <div *ngIf="!currentAnounce">
       <br />
-      <p>Please click on a Edit</p>
+      <p>{{"clickplease" | translate}}</p>
     </div>
   </div>
 </div>
@@ -118,7 +122,7 @@
             <div class="content-container">
                 <button mat-raised-button color="primary" style="cursor: default !important;">
                     <mat-icon>home</mat-icon>
-                    <span>Anounce Lists</span>
+                    <span>{{"anouncelist" | translate}}</span>
                 </button>
             </div>
     </div>
@@ -129,8 +133,8 @@
           <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
             <thead>
               <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Content</th>
+                <th scope="col">{{"title" | translate}}</th>
+                <th scope="col">{{"description" | translate}}</th>
               </tr>
             </thead>
             <tbody>

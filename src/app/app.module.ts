@@ -1,10 +1,9 @@
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import {  NgModule ,CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
-import { registerLocaleData } from '@angular/common';
-import localeTr from '@angular/common/locales/tr';
-registerLocaleData(localeTr, 'tr');
+
+
+
+import { NgModule ,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -19,7 +18,11 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-
+import { provideAnalytics,getAnalytics } from '@angular/fire/analytics';
+import { provideMessaging,getMessaging } from '@angular/fire/messaging';
+import { providePerformance,getPerformance } from '@angular/fire/performance';
+import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 
 
 
@@ -76,9 +79,13 @@ import { ComplaintsComponent } from './complaints/complaints.component';
 import { ComplaintsDetailsComponent } from './complaints-details/complaints-details.component';
 import { AnounceDetailsComponent } from './anounce-details/anounce-details.component';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-
-
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -97,7 +104,7 @@ import { PaymentDetailsComponent } from './payment-details/payment-details.compo
     ComplaintsComponent,
     ComplaintsDetailsComponent,
     AnounceDetailsComponent,
-    PaymentDetailsComponent
+    PaymentDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,6 +116,7 @@ import { PaymentDetailsComponent } from './payment-details/payment-details.compo
     provideFunctions(() => getFunctions()),
     provideStorage(() => getStorage()),
     AngularFireModule.initializeApp(environment.firebase),  // imports firebase/app needed for everything
+    AngularFireMessagingModule,
     AngularFirestoreModule,                                 // imports firebase/firestore, only needed for database features
     AngularFireStorageModule,                               // imports firebase/storage only needed for storage features
     AngularFireDatabaseModule,
@@ -153,16 +161,27 @@ import { PaymentDetailsComponent } from './payment-details/payment-details.compo
 
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,
         NgbModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient],
+          },
+          defaultLanguage: 'en-US',
+        }),
+        provideAnalytics(() => getAnalytics()),
+        provideMessaging(() => getMessaging()),
+        providePerformance(() => getPerformance()),
+        provideRemoteConfig(() => getRemoteConfig()),
 
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
-  providers: [{
-    provide: LOCALE_ID, useValue: 'tr-TR' // 'de' for Germany, 'fr' for France ...
-   }],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

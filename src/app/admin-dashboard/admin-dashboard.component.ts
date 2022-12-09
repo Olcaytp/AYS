@@ -9,6 +9,7 @@ import Payment from '../models/payment';
 import Anounce from '../models/anounce';
 import { PaymentService } from '../services/payment.service';
 import { AnounceService } from '../services/anounce.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -29,6 +30,7 @@ export class AdminDashboardComponent implements OnInit {
         private router: Router,
         private AnounceService: AnounceService,
         private PaymentService: PaymentService,
+        public translateService: TranslateService
         ) {
         this.user = null;
 
@@ -41,6 +43,10 @@ export class AdminDashboardComponent implements OnInit {
                 this.user = this.firestore.collection('users').doc(user.uid).valueChanges(); // get the user's doc in Cloud Firestore
             }
         });
+    }
+
+    public changeLanguage(language: string): void {
+      this.translateService.use(language);
     }
 
     saveAnouncement(): void {

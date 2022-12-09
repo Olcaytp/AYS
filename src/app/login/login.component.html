@@ -1,14 +1,14 @@
     <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between" style="background: #3f51b5; color: white;">
-    <div>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        </ul>
-      </div>
-    </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <button type="button" class="btn btn-sm btn-outline-warning" (click)="changeLanguage('en-US')" [class.active]="!translateService.currentLang || translateService.currentLang === 'en-US'">English</button>
+                <button type="button" class="btn btn-sm btn-outline-warning ml-5" (click)="changeLanguage('tr-TR')" [class.active]="translateService.currentLang === 'tr-TR'">Turkish</button>
+            </ul>
+        </div>
     <div>
         <button mat-button class="justify-content-end" routerLink="/signup">
             <mat-icon>logout</mat-icon>
-            Signup
+            {{ "signup" | translate }}
         </button>
     </div>
   </nav>
@@ -16,7 +16,7 @@
   <div class="d-flex justify-content-center m-5">
     <button mat-raised-button color="primary">
         <mat-icon>verified_user</mat-icon>
-        <span>Login Page</span>
+        <span>{{ "signin" | translate }}</span>
     </button>
     </div>
     <div class="form-container mat-elevation-z5">
@@ -39,8 +39,8 @@
                             <span>{{ firebaseErrorMessage }}</span>
                         </div>
                         <div  class="center" >
-                          <button mat-raised-button color="primary">Login</button>
-                          <button mat-raised-button color="primary" class="ml-3" routerLink="/signup" >Signup</button>
+                          <button mat-raised-button color="primary">{{ "login" | translate }}</button>
+                          <button mat-raised-button color="primary" class="ml-3" routerLink="/signup" >{{ "signup" | translate }}</button>
                         </div>
 
                     </form>

@@ -8,6 +8,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 import Complaint from '../models/complaint';
 import { ComplaintService } from '../services/complaint.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-complaints',
@@ -31,6 +32,7 @@ export class ComplaintsComponent implements OnInit {
     private firestore: AngularFirestore,
     private afAuth: AngularFireAuth,
     private router: Router,
+    public translateService: TranslateService
     ) {
       this.user = null;
      }
@@ -45,6 +47,10 @@ export class ComplaintsComponent implements OnInit {
       }
   });
     this.retrieveComplaints();
+  }
+
+  public changeLanguage(language: string): void {
+    this.translateService.use(language);
   }
 
   getData(){
