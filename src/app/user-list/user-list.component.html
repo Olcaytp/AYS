@@ -8,37 +8,37 @@
             <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
               <button mat-button routerLink="/admin">
                 <mat-icon>admin_panel_settings</mat-icon>
-                Admin Dashboard
+                {{ 'admin' | translate }}
               </button>
             </li>
             <li class="nav-item" *ngIf="(user | async)?.accountType != 'admin'">
               <button mat-button routerLink="/dashboard">
                 <mat-icon>dashboard</mat-icon>
-                Dashboard
+                {{ 'dashboard' | translate }}
               </button>
             </li>
             <li class="nav-item">
               <button mat-button routerLink="/payments">
                 <mat-icon> attach_money</mat-icon>
-                Payments
+                {{ 'payments' | translate }}
               </button>
             </li>
             <li class="nav-item">
                 <button mat-button routerLink="/user-list">
                     <mat-icon>list</mat-icon>
-                    Users
+                    {{ 'userList' | translate }}
                 </button>
             </li>
             <li>
                 <button mat-button routerLink="/announces">
                   <mat-icon>add_alert</mat-icon>
-                  Anounces
+                  {{ "anounces" | translate }}
                 </button>
             </li>
             <li>
                 <button mat-button routerLink="/complaints">
                   <mat-icon>add_alert</mat-icon>
-                  Complaints
+                  {{ "complaints" | translate }}
                 </button>
             </li>
           </ul>
@@ -46,41 +46,48 @@
       </div>
     </nav>
   </div>
-  <div>
+  <div class="d-flex flex-row">
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <button type="button" class="btn btn-sm btn-outline-warning" (click)="changeLanguage('en-US')" [class.active]="!translateService.currentLang || translateService.currentLang === 'en-US'">English</button>
+        <button type="button" class="btn btn-sm btn-outline-warning ml-5" (click)="changeLanguage('tr-TR')" [class.active]="translateService.currentLang === 'tr-TR'">Turkish</button>
+    </ul>
     <button mat-button class="justify-content-end" (click)="logout()">
       <mat-icon>logout</mat-icon>
-      Logout
+      {{ 'logout' | translate }}
     </button>
-  </div>
+</div>
 </nav>
-
 <div class="col-3 ml-5 mt-5">
   <div class="content-container">
       <button mat-raised-button color="primary" style="cursor: default !important;">
           <mat-icon>subject</mat-icon>
-          <span>User List</span>
+          <span> {{"logout" |translate}} </span>
       </button>
   </div>
 </div>
 
 <div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin" >
-  <div>
-    <div class="content-container">
+    <div class="content-container form-group">
+    <div class="search-hero">
+      <input class="form-control table-responsive" type="text" name="search" 
+      [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442; {{'search' | translate}}">
+    </div>
+
       <div class="table-responsive">
         <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
           <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Phone Number</th>
-              <th scope="col">Account Type</th>
-              <th scope="col">Start Date</th>
-              <th scope="col">Flat Number</th>
+            <tr style="text-align: center;" >
+                <th  scope="col"> {{ "name" | translate }} </th>
+                <th scope="col"> {{ "email" | translate }} </th>
+                <th scope="col"> {{ "phone" | translate }} </th>
+                <th scope="col"> {{ "account" | translate }} </th>
+                <th scope="col"> {{ "start" | translate }} </th>
+                <th scope="col"> {{ "flat" | translate }} </th>
               <th></th>
             </tr>
           </thead>
           <tbody >
-            <tr *ngFor="let item of items" style="text-align: center;">
+            <tr *ngFor="let item of items | filter:searchText" style="text-align: center;">
               <td> {{item.payload.doc.data().displayName}} </td>
               <td> {{item.payload.doc.data().email}} </td>
               <td> {{item.payload.doc.data().phoneNumber}} </td>
@@ -89,10 +96,10 @@
               <td> {{item.payload.doc.data().flatNumber}} </td>
               <td class="text-center action-block">
                 <span class="btn btn-outline-danger btn-sm ml-2" (click)="viewDetails(item)">
-                  Edit
+                  {{ "edit" | translate }}
                 </span>
                 <span class="btn btn-outline-danger btn-sm ml-2" (click)="deleteuser(item)">
-                  Delete
+                  {{ "delete" | translate }}
                 </span>
               </td>
             </tr>
@@ -100,9 +107,8 @@
         </table>
       </div>
     </div>
-  </div>
 </div>
 
 <ng-template #notAdmin>
-  Not admin
+  {{ "notAdmin" | translate}}
 </ng-template>

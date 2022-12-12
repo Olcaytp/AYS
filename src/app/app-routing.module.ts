@@ -2,17 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-// import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-// import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 import { AuthGuard } from './services/auth.guard';
-import { NewUserComponent } from './new-user/new-user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { EditUserComponent } from './edit-user/edit-user.component';

@@ -63,14 +63,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { environment } from '../environments/environment';
 import { SignupComponent } from './signup/signup.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { NewUserComponent } from './new-user/new-user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -80,6 +78,9 @@ import { ComplaintsDetailsComponent } from './complaints-details/complaints-deta
 import { AnounceDetailsComponent } from './anounce-details/anounce-details.component';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
@@ -92,10 +93,8 @@ export function createTranslateLoader(http: HttpClient) {
     AppComponent,
     AdminDashboardComponent,
     DashboardComponent,
-    HomeComponent,
     LoginComponent,
     SignupComponent,
-    NewUserComponent,
     UserListComponent,
     PaymentsComponent,
     EditUserComponent,
@@ -107,6 +106,7 @@ export function createTranslateLoader(http: HttpClient) {
     PaymentDetailsComponent,
   ],
   imports: [
+    Ng2SearchPipeModule,
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),

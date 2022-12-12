@@ -14,6 +14,7 @@ import {
   updateDoc,
   deleteDoc
 } from '@angular/fire/firestore'
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -24,7 +25,7 @@ import {
 })
 export class UserListComponent implements OnInit {
 
-
+  searchText: string = "";
   searchValue: string = "";
   items: Array<any>;
   name_filtered_items: Array<any>;
@@ -37,7 +38,8 @@ export class UserListComponent implements OnInit {
     private afAuth: AngularFireAuth,
     public firebaseService: FirebaseService,
     private router: Router,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    public translateService: TranslateService
   ) {
     this.user = null;
    }
@@ -51,6 +53,10 @@ export class UserListComponent implements OnInit {
           this.user = this.firestore.collection('users').doc(user.uid).valueChanges(); // get the user's doc in Cloud Firestore
       }
   });
+  }
+
+  public changeLanguage(language: string): void {
+    this.translateService.use(language);
   }
 
   getData(){

@@ -1,72 +1,68 @@
 <div *ngIf="currentPayment" class="edit-form">
     <form>
         <div class="form-group">
-          <label for="title">Title</label>
+          <label for="title">{{'title' | translate}}</label>
           <input
             type="text"
             class="form-control"
             id="title"
             [(ngModel)]="currentPayment.title"
-            name="title"
+            name="{{'title' | translate}}"
           />
         </div>
         <div class="form-group">
-          <label for="userName">User Name</label>
+          <label for="userName"> {{'name' | translate}} </label>
           <input
             type="text"
             class="form-control"
             id="userName"
             [(ngModel)]="currentPayment.userName"
-            name="userName"
+            name="{{'name' | translate}}"
           />
         </div>
 
         <div class="form-group">
-            <label for="paymentDate">Payment Date</label>
+            <label for="paymentDate">{{'payment-date' | translate}}</label>
             <input
               type="date"
               class="form-control"
               id="paymentDate"
               [(ngModel)]="currentPayment.paymentDate"
-              name="paymentDate"
+              name="{{'payment-date' | translate}}"
             />
           </div>
           <div class="form-group">
-            <label for="flatNumber">Flat Number</label>
+            <label for="flatNumber">{{'flat' | translate}}</label>
             <input
               type="number"
               class="form-control"
               id="flatNumber"
               [(ngModel)]="currentPayment.flatNumber"
-              name="flatNumber"
+              name="{{'flat' | translate}}"
             />
           </div>
           <div class="form-group">
-            <label for="paymentCount">Payment Count</label>
+            <label for="paymentCount">{{'payment-count' | translate}}</label>
             <input
               type="number"
               class="form-control"
               id="paymentCount"
               [(ngModel)]="currentPayment.paymentCount"
-              name="paymentCount"
+              name="{{'payment-count' | translate}}"
             />
           </div>
-      <div class="form-group">
-        <label><strong>Status:</strong></label>
-        {{ currentPayment.published ? "Published" : "Pending" }}
-      </div>
     </form>
     <span class="btn btn-outline-danger btn-sm ml-2" (click)="updatePayment()">
-      Update
+      {{'update' | translate}}
     </span>
     <span class="btn btn-outline-danger btn-sm ml-2" (click)="deletePayment()">
-      Delete
+      {{'delete' | translate}}
     </span>
     <p>{{ message }}</p>
   </div>
   
   <div *ngIf="!currentPayment">
     <br />
-    <p>Cannot access this Payment...</p>
+    <p>{{"no-payment" | translate}}</p>
   </div>
   

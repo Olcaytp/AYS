@@ -1,7 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-end"
+  style="background: #3f51b5; color: white;">
+  <div class="d-flex flex-row">
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <button type="button" class="btn btn-sm btn-outline-warning" (click)="changeLanguage('en-US')" [class.active]="!translateService.currentLang || translateService.currentLang === 'en-US'">English</button>
+        <button type="button" class="btn btn-sm btn-outline-warning ml-5" (click)="changeLanguage('tr-TR')" [class.active]="translateService.currentLang === 'tr-TR'">Turkish</button>
+    </ul>
+    <button mat-button class="justify-content-end" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      {{ 'logout' | translate }}
+    </button>
+</div>
+</nav>
+
 <div class="edit-page">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Edit User</li>
+        <li class="breadcrumb-item active" aria-current="page"> {{"edit-user" | translate}}</li>
       </ol>
     </nav>
     <div class="page-content">
@@ -12,49 +26,49 @@
   
             <div class="form-group">
               <mat-form-field class="input-style">
-                <input matInput placeholder="Name" class="form-control" formControlName="displayName">
+                <input matInput placeholder="{{'name' | translate}}" class="form-control" formControlName="displayName">
               </mat-form-field>
             </div>
-  
+            
             <div class="form-group">
               <mat-form-field class="input-style">
-                <input matInput placeholder="Email" class="form-control" formControlName="email">
+                <input matInput placeholder="{{'email' | translate}}" class="form-control" formControlName="email">
               </mat-form-field>
               <ng-container *ngFor="let validation of validation_messages.email">
                 <mat-error *ngIf="exampleForm.get('email').hasError(validation.type) && (exampleForm.get('email').dirty || exampleForm.get('email').touched)">{{validation.message}}</mat-error>
               </ng-container>
             </div>
-
             
               <div class="form-group">
                 <mat-form-field class="input-style">
-                  <input matInput placeholder="AccountType" class="form-control" formControlName="accountType">
+                  <input matInput placeholder="{{'account' | translate}}" class="form-control" formControlName="accountType">
                 </mat-form-field>
               </div>
 
                 <div class="form-group">
                   <mat-form-field class="input-style">
-                    <input matInput placeholder="phoneNumber" class="form-control" formControlName="phoneNumber">
+                    <input matInput placeholder="{{'start' | translate}}" class="form-control" formControlName="phoneNumber">
                   </mat-form-field>
                 </div>
                 
                   <div class="form-group">
                     <mat-form-field class="input-style">
-                      <input matInput placeholder="startDate" class="form-control" formControlName="startDate">
+                      <input matInput placeholder="{{'email' | translate}}" class="form-control" formControlName="startDate">
                     </mat-form-field>
                   </div>
+
                   <div class="form-group">
                     <mat-form-field class="input-style">
-                      <input matInput placeholder="Flat Number" class="form-control" formControlName="flatNumber">
+                      <input matInput placeholder="{{'flat' | translate}} " class="form-control" formControlName="flatNumber">
                     </mat-form-field>
                   </div>
   
             <div class="row submit-button-container">
               <div class="col-md-4">
-                <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="exampleForm.valid">Save</button>
+                <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="exampleForm.valid">{{"save" | translate}}</button>
               </div>
               <div class="col-md-4">
-                <button mat-raised-button class="cancel-button" color="warn" type="button" (click)="cancel()">Cancel</button>
+                <button mat-raised-button class="cancel-button" color="warn" type="button" (click)="cancel()">{{"cancel" | translate}}</button>
               </div>
             </div>
           </form>

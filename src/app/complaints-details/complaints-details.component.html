@@ -1,7 +1,7 @@
 <div *ngIf="currentComplaint" class="edit-form">
     <form>
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title">{{"title" | translate}}</label>
         <input
           type="text"
           class="form-control"
@@ -11,7 +11,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description">{{"description" | translate}}</label>
         <input
           type="text"
           class="form-control"
@@ -20,22 +20,17 @@
           name="description"
         />
       </div>
-      <div class="form-group">
-        <label><strong>Status:</strong></label>
-        {{ currentComplaint.published ? "Published" : "Pending" }}
-      </div>
     </form>
     <span class="btn btn-outline-danger btn-sm ml-2" (click)="updateComplaint()">
-      Update
+      {{"update" | translate}}
     </span>
     <span class="btn btn-outline-danger btn-sm ml-2" (click)="deleteComplaint()">
-      Delete
+      {{"delete" | translate}}
     </span>
-    <p>{{ message }}</p>
   </div>
   
   <div *ngIf="!currentComplaint">
     <br />
-    <p>Cannot access this Complaint...</p>
+    <p> {{"no-complaint" | translate}} </p>
   </div>
   

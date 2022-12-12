@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { FirebaseService } from '../services/firebase.service';
 
@@ -40,7 +41,9 @@ export class EditUserComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    public dialog: MatDialog
+    private afAuth: AngularFireAuth,
+    public dialog: MatDialog,
+    public translateService: TranslateService,
   ) { }
 
   getData(){
@@ -79,6 +82,10 @@ export class EditUserComponent implements OnInit {
     })
   }
 
+  public changeLanguage(language: string): void {
+    this.translateService.use(language);
+  }
+
   
 
   createForm() {
@@ -108,5 +115,19 @@ export class EditUserComponent implements OnInit {
   cancel(){
     this.router.navigate(['/user-list']);
   }
+
+  logout(): void {
+    this.afAuth.signOut()
+    .then(() => {
+        this.router.navigate(['/login']);                    // when we log the user out, navigate them to home
+    })
+    .catch(error => {
+        console.log('Auth Service: logout error...');
+        console.log('error code', error.code);
+        console.log('error', error);
+        if (error.code)
+            return error;
+    });
+}
 
 }

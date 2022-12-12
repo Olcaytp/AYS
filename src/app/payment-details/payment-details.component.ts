@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import Payment from '../models/payment';
 import { PaymentService } from '../services/payment.service';
@@ -22,10 +23,17 @@ export class PaymentDetailsComponent implements OnInit {
   };
   message = '';
 
-  constructor( private PaymentService: PaymentService ) { }
+  constructor(
+    private PaymentService: PaymentService,
+    public translateService: TranslateService
+    ) { }
 
   ngOnInit(): void {
     this.message = '';
+  }
+
+  public changeLanguage(language: string): void {
+    this.translateService.use(language);
   }
 
   ngOnChanges(): void {

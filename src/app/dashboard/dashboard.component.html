@@ -8,36 +8,38 @@
             <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
               <button mat-button routerLink="/admin">
                 <mat-icon>admin_panel_settings</mat-icon>
-                Admin Dashboard
+                {{ 'admin' | translate }}
               </button>
             </li>
             <li class="nav-item" *ngIf="(user | async)?.accountType != 'admin'">
               <button mat-button routerLink="/dashboard">
                 <mat-icon>dashboard</mat-icon>
-                Dashboard
+                {{ 'dashboard' | translate }}
               </button>
             </li>
             <li class="nav-item">
               <button mat-button routerLink="/payments">
                 <mat-icon> attach_money</mat-icon>
-                Payments
+                {{ 'payments' | translate }}
               </button>
             </li>
             <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
               <button mat-button routerLink="/user-list">
                 <mat-icon>list</mat-icon>
-                Users
+                {{ 'userList' | translate }}
               </button>
             </li>
             <li>
                 <button mat-button routerLink="/announces">
                   <mat-icon>add_alert</mat-icon>
-                  Announces</button>
+                  {{ "anounces" | translate }}
+                </button>
             </li>
             <li>
               <button mat-button routerLink="/complaints">
                 <mat-icon>add_alert</mat-icon>
-                Complaints</button>
+                {{ "complaints" | translate }}
+              </button>
           </li>
           </ul>
         </div>
@@ -51,7 +53,7 @@
       </ul>
       <button mat-button class="justify-content-end" (click)="logout()">
         <mat-icon>logout</mat-icon>
-        Logout
+        {{ 'logout' | translate }}
       </button>
   </div>
 </nav>
@@ -62,7 +64,7 @@
             <div class="content-container">
                 <button mat-raised-button color="primary" style="cursor: default !important;">
                     <mat-icon>home</mat-icon>
-                    <span>Dashboard Page</span>
+                    <span> {{"dashboard" | translate}} </span>
                 </button>
                 <br>
             </div>
@@ -76,13 +78,13 @@
             <table *ngIf="(user | async)" id="example"
                 class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
                 <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone Number</th>
-                        <th scope="col">Account Type</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">Flat Number</th>
+                  <tr style="text-align: center;" >
+                      <th  scope="col"> {{ "name" | translate }} </th>
+                      <th scope="col"> {{ "email" | translate }} </th>
+                      <th scope="col"> {{ "phone" | translate }} </th>
+                      <th scope="col"> {{ "account" | translate }} </th>
+                      <th scope="col"> {{ "start" | translate }} </th>
+                      <th scope="col"> {{ "flat" | translate }} </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -103,13 +105,13 @@
 <div class="col-8 m-5" style="border: 2px solid; border-radius: 50px; background-color: #d7f8fa;">
   <button mat-raised-button color="primary" class="m-3" style="cursor: default !important;">
       <mat-icon>add_alert</mat-icon>
-        <span>Şikayet Oluştur</span>
+        <span> {{"cretae-complaint" | translate}} </span>
     </button>
 
     <div class="submit-form ml-3">
       <div>
         <div #complaintform class="form-group">
-          <label for="title">Title</label>
+          <label for="title">{{"title" | translate}}</label>
           <input
             type="text"
             class="form-control"
@@ -121,7 +123,7 @@
         </div>
     
         <div class="form-group">
-          <label for="description">Description</label>
+          <label for="description">{{"description" | translate}}</label>
           <input
             class="form-control"
             id="description"
@@ -131,7 +133,7 @@
           />
         </div>
     
-        <button (click)="saveComplaint()" class="btn btn-success m-3 ">Submit</button>
+        <button (click)="saveComplaint()" class="btn btn-success m-3 ">{{"submit" | translate}}</button>
       </div>
 </div>
 </div>

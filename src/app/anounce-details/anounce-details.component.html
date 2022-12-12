@@ -1,5 +1,4 @@
 <div *ngIf="currentAnounce" class="edit-form">
-  <h4>{{ 'announces' | translate }}</h4>
   <form>
     <div #editform class="form-group">
       <label for="title">{{"title" | translate}}</label>
@@ -21,19 +20,13 @@
         name="description"
       />
     </div>
-
-    <div class="form-group">
-      <label><strong>Status:</strong></label>
-      {{ currentAnounce.published ? "Published" : "Pending" }}
-    </div>
   </form>
   <button type="submit" class="btn btn-outline-danger btn-sm ml-2" (click)="updateAnounce()">
-    {{ 'update' | translate }}}
+    {{ 'update' | translate }}
   </button>
   <span class="btn btn-outline-danger btn-sm ml-2" (click)="deleteAnounce()">
     {{ 'delete' | translate }}
   </span>
-  <p>{{"message" | translate}}</p>
 </div>
 
 <div *ngIf="!currentAnounce">

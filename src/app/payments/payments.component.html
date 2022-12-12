@@ -8,30 +8,32 @@
             <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
               <button mat-button routerLink="/admin">
                 <mat-icon>admin_panel_settings</mat-icon>
-                Admin Dashboard
+                {{ 'admin' | translate }}
               </button>
             </li>
             <li class="nav-item">
               <button mat-button routerLink="/dashboard">
                 <mat-icon>dashboard</mat-icon>
-                Dashboard
+                {{ 'dashboard' | translate }}
               </button>
             </li>
             <li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
                 <button mat-button routerLink="/user-list">
                     <mat-icon>list</mat-icon>
-                    Users
+                    {{ 'userList' | translate }}
                 </button>
             </li>
             <li>
                 <button mat-button routerLink="/announces">
                   <mat-icon>add_alert</mat-icon>
-                  Announces</button>
+                  {{ "anounces" | translate }}
+                </button>
             </li>
             <li>
               <button mat-button routerLink="/complaints">
                 <mat-icon>add_alert</mat-icon>
-                Complaints</button>
+                {{ "complaints" | translate }}
+              </button>
           </li>
           </ul>
         </div>
@@ -45,7 +47,7 @@
     </ul>
     <button mat-button class="justify-content-end" (click)="logout()">
       <mat-icon>logout</mat-icon>
-      Logout
+      {{ 'logout' | translate }}
     </button>
 </div>
 </nav>
@@ -56,7 +58,9 @@
       <div class="content-container">
           <button mat-raised-button color="primary" style="cursor: default !important;">
               <mat-icon>attach_money</mat-icon>
-              <span>Payment List</span>
+              <span>
+                {{ 'payment-list' | translate }}
+              </span>
           </button>
       </div>
     </div>
@@ -65,17 +69,17 @@
         <div class="table-responsive">
           <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
             <thead>
-              <tr>
-                <th scope="col">Title</th>
-                <th scope="col">User Name</th>
-                <th scope="col">Payment Date</th>
-                <th scope="col">Flat Number</th>
-                <th scope="col">Payment Count</th>
+              <tr style="text-align: center;">
+                <th scope="col"> {{"title" | translate}} </th>
+                <th scope="col"> {{"user-name" | translate}} </th>
+                <th scope="col"> {{"payment-date" | translate}} </th>
+                <th scope="col"> {{"flat" | translate}} </th>
+                <th scope="col"> {{"payment-count" | translate}} </th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let payment of payments; let i = index" [class.active]="i == currentIndex">
+              <tr *ngFor="let payment of payments; let i = index" [class.active]="i == currentIndex" style="text-align: center;">
                 <td>{{payment.title}}</td>
                 <td>{{payment.userName}}</td>
                 <td>{{payment.paymentDate | date: 'longDate'}}</td>
@@ -83,7 +87,7 @@
                 <td>{{payment.paymentCount | currency: '₺'}}</td>
                 <td class="text-center action-block">
                   <span class="btn btn-outline-danger btn-sm ml-2" [class.active]="i == currentIndex" (click)="setActivePayment(payment, i)">
-                    Edit
+                    {{"edit" | translate}}
                   </span>
                 </td>
               </tr>
@@ -97,7 +101,9 @@
     <div class=" ml-0 mt-5">
           <button mat-raised-button color="primary" style="cursor: default !important;">
               <mat-icon>list</mat-icon>
-              <span>Payment Details</span>
+              <span>
+                {{"payment-details" | translate}} 
+              </span>
           </button>
   </div>
     <div *ngIf="currentPayment">
@@ -109,7 +115,7 @@
   
     <div *ngIf="!currentPayment">
       <br />
-      <p>Please click on a Edit</p>
+      <p> {{"clickplease" | translate}} </p>
     </div>
   </div>
 </div>
@@ -120,7 +126,9 @@
       <div class="content-container">
           <button mat-raised-button color="primary" style="cursor: default !important;">
               <mat-icon>attach_money</mat-icon>
-              <span>Payment List</span>
+              <span>
+                {{ 'payment-list' | translate }} 
+              </span>
           </button>
       </div>
     </div>
@@ -129,12 +137,12 @@
         <div class="table-responsive">
           <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
             <thead>
-              <tr>
-                <th scope="col">Title</th>
-                <th scope="col">User Name</th>
-                <th scope="col">Payment Date</th>
-                <th scope="col">Flat Number</th>
-                <th scope="col">Payment Count</th>
+              <tr style="text-align: center;">
+                <th scope="col"> {{"title" | translate}} </th>
+                <th scope="col"> {{"user-name" | translate}} </th>
+                <th scope="col"> {{"payment-date" | translate}} </th>
+                <th scope="col"> {{"flat" | translate}} </th>
+                <th scope="col"> {{"payment-count" | translate}} </th>
               </tr>
             </thead>
             <tbody>
