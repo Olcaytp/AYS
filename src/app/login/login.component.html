@@ -24,15 +24,15 @@
                     <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
                         <p  class="center" >
                             <mat-form-field>
-                                <mat-label>Email</mat-label>
+                                <mat-label>{{'email' | translate}}</mat-label>
                                 <input autocomplete="off" formControlName="email" type="email" matInput placeholder="{{'email' | translate}}">
                             </mat-form-field>
                         </p>
                         <p class="center" >
                             <mat-form-field>
-                                <mat-label>Password</mat-label>
+                                <mat-label>{{'password' | translate}}</mat-label>
                                 <input autocomplete="off" formControlName="password" type="password" matInput
-                                    placeholder="Password">
+                                    placeholder="{{'password' | translate}}">
                             </mat-form-field>
                         </p>
                         <div *ngIf="firebaseErrorMessage != ''" class="error-style">

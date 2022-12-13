@@ -25,22 +25,22 @@
     <mat-card>
         <form [formGroup]="signupForm" (ngSubmit)="signup()" style="text-align: center;">
             <mat-form-field>
-                <input matInput formControlName="displayName" placeholder="User Name">
+                <input matInput formControlName="displayName" placeholder="{{ 'name' | translate }}">
             </mat-form-field>
             <mat-form-field>
-                <input formControlName="email" type="email" matInput placeholder="Email Address">
+                <input formControlName="email" type="email" matInput placeholder="{{ 'email' | translate }}">
             </mat-form-field>
             <mat-form-field>
-                <input formControlName="phoneNumber" type="number" matInput placeholder="Phone Number">
+                <input formControlName="phoneNumber" type="number" matInput placeholder="{{ 'phone' | translate }}">
             </mat-form-field>
             <mat-form-field>
-                <input formControlName="startDate" type="date" matInput placeholder="Başlangıç Tarihi">
+                <input formControlName="startDate" type="date" matInput placeholder="{{ 'start-date' | translate }}">
             </mat-form-field>
             <mat-form-field>
-                <input formControlName="password" type="password" matInput placeholder="Password">
+                <input formControlName="password" type="password" matInput placeholder="{{ 'password' | translate }}">
             </mat-form-field>
             <mat-form-field>
-                <input formControlName="flatNumber" type="number" matInput placeholder="Flat Number">
+                <input formControlName="flatNumber" type="number" matInput placeholder="{{ 'flat' | translate }}">
             </mat-form-field>
             <div *ngIf="firebaseErrorMessage != ''" class="error-style">
                 <span>{{ firebaseErrorMessage }}</span>

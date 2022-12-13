@@ -22,11 +22,11 @@
     "complaintDetails": "Complaint Details",
     "admin-page": "Admin Page",
     "name": "Name",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Phone",
     "password": "Password",
     "account": "Account Type",
-    "start": "Start Date",
+    "start-date": "Start Date",
     "flat": "Flat Number",
     "create-anounce": "Create Anounce",
     "title": "Title",
@@ -44,6 +44,8 @@
     "payment-date": "Payment Date",
     "no-payment": "There is no payment",
     "not-admin": "You are not admin",
-    "search": "Start searching for a user by name"
+    "search": "Start searching for a user by name",
+    "contact": "Contact",
+    "mail-message": "Mail Message"
   }
   

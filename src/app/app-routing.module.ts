@@ -15,6 +15,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditUserResolver } from './edit-user/edit-user.resolver';
 import { AnouncesComponent } from './anounces/anounces.component';
 import { ComplaintsComponent } from './complaints/complaints.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
   { path: 'announces', component: AnouncesComponent},
   { path: 'complaints', component: ComplaintsComponent},
+  { path: 'contact', component: ContactComponent},
   { path: 'details/:id', component: EditUserComponent, resolve:{data : EditUserResolver}, canActivate: [AuthGuard] },
   { path: '**', component: DashboardComponent },                       // catch-all in case no other path matched
 ];

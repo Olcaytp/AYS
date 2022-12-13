@@ -26,7 +26,7 @@
     "phone": "Telefon",
     "password": "Şifre",
     "account": "Hesap",
-    "start": "Başlangıç Tarihi",
+    "start-date": "Başlangıç Tarihi",
     "flat": "Daire Numarası",
     "create-anounce": "Duyuru Oluştur",
     "title": "Başlık",
@@ -44,6 +44,8 @@
     "payment-date": "Ödeme Tarihi",
     "no-payment": "Ödeme Bulunamadı",
     "not-admin": "Yönetici Değilsiniz",
-    "search": "Kullanıcı ismi ile Arama"
+    "search": "Kullanıcı ismi ile Arama",
+    "contact": "İletişim",
+    "mail-message": "Mesaj"
   }
   

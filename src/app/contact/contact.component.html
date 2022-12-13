@@ -1,0 +1,115 @@
+<nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between"
+	style="background: #3f51b5; color: white;">
+	<div>
+		<nav class="navbar navbar-expand-lg navbar-light" style="background: #3f51b5; color: white;">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
+							<button mat-button routerLink="/admin">
+								<mat-icon>admin_panel_settings</mat-icon>
+								{{ 'admin' | translate }}
+							</button>
+						</li>
+						<li class="nav-item">
+							<button mat-button routerLink="/dashboard">
+								<mat-icon>dashboard</mat-icon>
+								{{ 'dashboard' | translate }}
+							</button>
+						</li>
+						<li class="nav-item">
+							<button mat-button routerLink="/payments">
+								<mat-icon> attach_money</mat-icon>
+								{{ 'payments' | translate }}
+							</button>
+						</li>
+						<li class="nav-item" *ngIf="(user | async)?.accountType == 'admin'">
+							<button mat-button routerLink="/user-list">
+								<mat-icon>list</mat-icon>
+								{{ 'userList' | translate }}
+							</button>
+						</li>
+						<li>
+							<button mat-button routerLink="/announces">
+								<mat-icon>add_alert</mat-icon>
+								{{ "anounces" | translate }}
+							</button>
+						</li>
+						<li>
+							<button mat-button routerLink="/complaints">
+								<mat-icon>add_alert</mat-icon>
+								{{ 'complaints' | translate }}
+							</button>
+						</li>
+						<li>
+							<button mat-button routerLink="/contact">
+								<mat-icon>add_alert</mat-icon>
+								{{ "contact" | translate }}
+							</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="d-flex flex-row">
+		<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+			<button type="button" class="btn btn-sm btn-outline-warning" (click)="changeLanguage('en-US')"
+				[class.active]="!translateService.currentLang || translateService.currentLang === 'en-US'">English</button>
+			<button type="button" class="btn btn-sm btn-outline-warning ml-5" (click)="changeLanguage('tr-TR')"
+				[class.active]="translateService.currentLang === 'tr-TR'">Turkish</button>
+		</ul>
+		<button mat-button class="justify-content-end" (click)="logout()">
+			<mat-icon>logout</mat-icon>
+			{{ 'logout' | translate }}
+		</button>
+	</div>
+</nav>
+
+<div class="brands">
+	<div class="col-5 mt-3 ml-5">
+		<button mat-raised-button color="primary" class="m-3" style="cursor: default !important;">
+			<mat-icon class="pl-0">add_alert</mat-icon>
+			<span style="padding-left: 2px;"> {{ "contact" | translate }} </span>
+		</button>
+			<div class="submit-form ml-3" style="border: 2px solid; border-radius: 50px;">
+
+				<form class="form-container" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+					<div class="form-group validate-input" data-validate = "Name is required">
+						<input formControlName="name" type="text" name="name" placeholder="{{'name' | translate}}" id="name">
+						<span class="shadow-input1"></span>
+					  </div>
+					  <div class="form-group validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input formControlName="email" #em class="input1" type="text" name="email" placeholder="{{'email' | translate}}">
+						<span class="shadow-input1"></span>
+					  </div>
+					<div class="alert alert-danger" role="alert" *ngIf="formControls.email.errors?.email && (formControls.email.dirty || formControls.email.touched)">
+						Are you sure  {{em.value}} Exists ?
+					  </div>
+					  <div class="form-group validate-input" data-validate = "Mobile Number is required">
+						<input #mno formControlName="mobileNumber" class="input1" type="text" name="Mobile Number" placeholder="{{'phone' | translate}}">
+						<span class="shadow-input1"></span>
+					  </div>
+					<div class="alert alert-danger" role="alert" *ngIf="formControls.mobileNumber.errors?.pattern && (formControls.mobileNumber.dirty || formControls.mobileNumber.touched)">
+						Hmm ! {{mno.value}} doesn't seems to be a valid Mobile Number :(
+					  </div>
+					  <div class="form-group validate-input" data-validate = "Message is required">
+						<textarea formControlName="message" class="input1" name="message" 
+						placeholder="{{'mail-message' | translate}}" style="height: 150px; width: 300px;"></textarea>
+						<span class="shadow-input1"></span>
+					  </div>
+					<div class="container-contact1-form-btn">
+						<button class="btn btn-success m-3" type="submit">
+							<span>
+								Send Email
+								<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+					<div class="container successfully-sent" *ngIf="emailSent">
+						<span class="msg">Email sent successfully, </span><a class="try-again" (click)="resetForm()">Send again ?</a>
+					</div>
+				</form>
+			</div>
+	</div>
+</div>

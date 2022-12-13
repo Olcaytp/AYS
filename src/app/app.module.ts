@@ -83,6 +83,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { ContactComponent } from './contact/contact.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -104,6 +105,7 @@ export function createTranslateLoader(http: HttpClient) {
     ComplaintsDetailsComponent,
     AnounceDetailsComponent,
     PaymentDetailsComponent,
+    ContactComponent,
   ],
   imports: [
     Ng2SearchPipeModule,
