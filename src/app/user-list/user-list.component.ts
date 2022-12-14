@@ -83,23 +83,6 @@ export class UserListComponent implements OnInit {
     console.log(item.payload.doc);
   }
 
-  capitalizeFirstLetter(value){
-    return value.charAt(0).toUpperCase() + value.slice(1);
-  }
-
-  combineLists(a, b){
-    let result = [];
-
-    a.filter(x => {
-      return b.filter(x2 =>{
-        if(x2.payload.doc.id == x.payload.doc.id){
-          result.push(x2);
-        }
-      });
-    });
-    return result;
-  }
-
   logout(): void {
     this.afAuth.signOut()
     .then(() => {

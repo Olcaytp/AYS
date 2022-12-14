@@ -20,6 +20,7 @@ export class PaymentsComponent implements OnInit {
   currentPayment?: Payment;
   title = '';
   user: Observable<any>;
+  searchText: string = "";
 
 
   constructor(

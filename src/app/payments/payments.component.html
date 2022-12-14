@@ -35,6 +35,12 @@
                 {{ "complaints" | translate }}
               </button>
           </li>
+          <li>
+            <button mat-button routerLink="/contact">
+              <mat-icon>contact_mail</mat-icon>
+              {{ "contact" | translate }}
+            </button>
+          </li>
           </ul>
         </div>
       </div>
@@ -54,7 +60,7 @@
 
 <div class="row" *ngIf="(user | async)?.accountType == 'admin'; else userBoard" >
   <div class="col-md-7">
-    <div class="col-3 ml-5 mt-5">
+    <div class="col-5 ml-5 mt-5">
       <div class="content-container">
           <button mat-raised-button color="primary" style="cursor: default !important;">
               <mat-icon>attach_money</mat-icon>
@@ -62,6 +68,10 @@
                 {{ 'payment-list' | translate }}
               </span>
           </button>
+      </div>
+      <div class="search-hero mt-3">
+          <input class="form-control table-responsive" type="text" name="search" 
+          [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442; {{'search' | translate}}">
       </div>
     </div>
 
@@ -146,7 +156,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let payment of payments; let i = index" [class.active]="i == currentIndex">
+              <tr *ngFor="let payment of payments; let i = index" [class.active]="i == currentIndex"
+              style="text-align: center;">
                 <td>{{payment.title}}</td>
                 <td>{{payment.userName}}</td>
                 <td>{{payment.paymentDate | date: 'longDate'}}</td>
