@@ -67,12 +67,12 @@
 </nav>
 
 <div class="brands">
-	<div class="col-5 mt-3 ml-5">
-		<button mat-raised-button color="primary" class="m-3" style="cursor: default !important;">
+	<div class="col-5">
+		<button mat-raised-button color="primary" class="mt-5 ml-5" style="cursor: default !important;">
 			<mat-icon class="pl-0">add_alert</mat-icon>
 			<span style="padding-left: 2px;"> {{ "contact" | translate }} </span>
 		</button>
-			<div class="submit-form ml-3" style="border: 2px solid; border-radius: 50px;">
+			<div class="submit-form">
 
 				<form class="form-container" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
 					<div class="form-group validate-input" data-validate = "Name is required">
