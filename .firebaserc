@@ -1,14 +1,5 @@
 {
-  "targets": {
-    "apartment-management-sys-b8d2f": {
-      "hosting": {
-        "AYS": [
-          "apartment-management-sys-b8d2f"
-        ]
-      }
-    }
-  },
   "projects": {
-    "default": "apartment-management-sys-b8d2f"
+    "default": "apt-management-system"
   }
 }
